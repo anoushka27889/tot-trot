@@ -931,26 +931,26 @@
       "nature-connection": "Nature Connection",
       "water-confidence": "Water Confidence"
     },
-    "interests": {
-      "trains": "Trains & Transportation",
-      "dinosaurs": "Dinosaurs", 
-      "animals": "Animals & Nature",
-      "picnic": "Picnics & Outdoor Dining",
-      "hikes": "Hiking & Walking",
-      "water": "Water Play",
-      "building": "Building & Construction",
-      "tools": "Tools & Making",
-      "outdoor-play": "Outdoor Adventure",
-      "science": "Science & Discovery",
-      "art": "Arts & Crafts",
-      "music": "Music & Movement",
-      "playground": "Playgrounds",
-      "beach": "Beach & Sand",
-      "nature": "Nature & Gardens",
-      "rides": "Rides & Amusement",
-      "adventure": "Adventure & Exploration"
-    },
-    "duration": {
+   "interests": {
+  "trains": "trains",
+  "dinosaurs": "dinosaurs", 
+  "animals": "animals",
+  "picnics": "picnics",
+  "hiking": "hiking",
+  "water": "water",
+  "building-things": "building things",
+  "using-tools": "using tools",
+  "playing-outside": "playing outside",
+  "science": "science",
+  "art": "art",
+  "music": "music",
+  "playgrounds": "playgrounds",
+  "beaches": "beaches",
+  "nature": "nature",
+  "rides-attractions": "rides & attractions",
+  "adventure": "adventure"
+},
+    "duration":{
       "quick": "Quick Visit (< 2 hours)",
       "half-day": "Half Day (2-4 hours)", 
       "full-day": "Full Day (4+ hours)"

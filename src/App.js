@@ -12,6 +12,10 @@ function App() {
     duration: 'All Durations'
   });
 
+  // New state for additional features
+  const [favorites, setFavorites] = useState([]);
+  const [currentPage, setCurrentPage] = useState('home'); // 'home' or 'about'
+
   // Get user location for distance sorting
   useEffect(() => {
     if (navigator.geolocation) {
@@ -27,6 +31,18 @@ function App() {
     }
   }, []);
 
+  // Load and save favorites
+  useEffect(() => {
+    const savedFavorites = localStorage.getItem('tot_trot_favorites');
+    if (savedFavorites) {
+      setFavorites(JSON.parse(savedFavorites));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('tot_trot_favorites', JSON.stringify(favorites));
+  }, [favorites]);
+
   // Calculate distance between two coordinates
   const calculateDistance = (lat1, lon1, lat2, lon2) => {
     const R = 3959; // Earth's radius in miles
@@ -37,6 +53,34 @@ function App() {
       Math.sin(dLon/2) * Math.sin(dLon/2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     return R * c;
+  };
+
+  // New action functions
+  const toggleFavorite = (locationId) => {
+    setFavorites(prev => 
+      prev.includes(locationId) 
+        ? prev.filter(id => id !== locationId)
+        : [...prev, locationId]
+    );
+  };
+
+  const getDirections = (address) => {
+    const encodedAddress = encodeURIComponent(address);
+    window.open(`https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}`, '_blank');
+  };
+
+  const shareActivity = (location) => {
+    if (navigator.share) {
+      navigator.share({
+        title: location.name,
+        text: `Check out ${location.name} in ${location.city}! "${location.parentQuote}"`,
+        url: window.location.href
+      });
+    } else {
+      const shareText = `${location.name} - ${location.city}\n"${location.parentQuote}"\n${location.address}\n\nFound on Tot Trot: ${window.location.href}`;
+      navigator.clipboard.writeText(shareText);
+      alert('Activity info copied to clipboard!');
+    }
   };
 
   // Get available cities based on selected region
@@ -129,13 +173,136 @@ function App() {
       .join(', ');
   };
 
+  // About page
+  if (currentPage === 'about') {
+    return (
+      <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif', backgroundColor: '#f9fafb', minHeight: '100vh' }}>
+        <header style={{ textAlign: 'center', marginBottom: '40px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1000px', margin: '0 auto' }}>
+            <div style={{ flex: 1 }}></div>
+            <div style={{ textAlign: 'center' }}>
+              <h1 style={{ color: '#6366f1', fontSize: '3rem', marginBottom: '10px' }}>🌟 Tot Trot</h1>
+              <p style={{ fontSize: '1.2rem', color: '#4b5563' }}>About Our Mission</p>
+            </div>
+            <div style={{ flex: 1, textAlign: 'right' }}>
+              <button
+                onClick={() => setCurrentPage('home')}
+                style={{
+                  padding: '10px 20px',
+                  backgroundColor: '#6366f1',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  cursor: 'pointer',
+                  fontWeight: 'bold'
+                }}
+              >
+                ← Back to Activities
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <div style={{ backgroundColor: '#fff', padding: '40px', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', marginBottom: '30px' }}>
+            <h2 style={{ color: '#1f2937', fontSize: '2rem', marginBottom: '20px' }}>About Tot Trot</h2>
+            
+            <div style={{ backgroundColor: '#fef3c7', padding: '20px', borderRadius: '8px', marginBottom: '25px' }}>
+              <h3 style={{ color: '#92400e', fontSize: '1.3rem', marginBottom: '15px' }}>👋 My Story</h3>
+              <p style={{ color: '#92400e', marginBottom: '15px' }}>
+                Hi! I'm a parent who moved to the Bay Area from out of state, and I quickly realized something: weekends with kids here can be overwhelming when you don't know the area.
+              </p>
+              <p style={{ color: '#92400e', marginBottom: '15px' }}>
+                I'd spend Friday nights frantically googling "things to do with kids Bay Area" and getting the same generic results - Pier 39, Golden Gate Park, the usual tourist spots. But what about the hidden gems? The places where local parents actually take their kids?
+              </p>
+              <p style={{ color: '#92400e' }}>
+                After too many disappointing weekend adventures and overpaying for crowded attractions, I decided to do something about it. I dove deep into parent communities online to find the REAL recommendations.
+              </p>
+            </div>
+            
+            <h3 style={{ color: '#6366f1', fontSize: '1.3rem', marginBottom: '15px' }}>🔍 How I Built This</h3>
+            <p style={{ color: '#4b5563', marginBottom: '20px' }}>
+              I spent months combing through Reddit threads, Facebook parent groups, and local community boards to find activities that parents actually recommend - not just the obvious spots, but the authentic, local favorites that make weekends special.
+            </p>
+            
+            <div style={{ backgroundColor: '#dbeafe', padding: '20px', borderRadius: '8px', marginBottom: '25px' }}>
+              <h4 style={{ color: '#1e40af', marginBottom: '10px' }}>📊 My Research Process:</h4>
+              <ul style={{ color: '#1e40af', marginLeft: '20px' }}>
+                <li>Analyzed 100+ Reddit posts from r/BayAreaParents and local subreddits</li>
+                <li>Collected every authentic parent quote and insider tip I could find</li>
+                <li>Verified locations, hours, and practical details</li>
+                <li>Organized everything by age-appropriate developmental benefits</li>
+                <li>Added distance sorting because nobody wants to drive across the whole Bay Area</li>
+              </ul>
+            </div>
+            
+            <h3 style={{ color: '#6366f1', fontSize: '1.3rem', marginBottom: '15px' }}>💡 What Makes This Different</h3>
+            <p style={{ color: '#4b5563', marginBottom: '20px' }}>
+              Every location includes authentic parent quotes and practical insider tips - because there's a huge difference between what sounds good online and what actually works when you're there with real kids on a Saturday morning.
+            </p>
+            
+            <div style={{ backgroundColor: '#ecfdf5', padding: '20px', borderRadius: '8px' }}>
+              <h4 style={{ color: '#065f46', marginBottom: '10px' }}>📍 87 Parent-Approved Locations</h4>
+              <p style={{ color: '#065f46' }}>
+                From free neighborhood parks to unique adventures, every single spot has been recommended by actual Bay Area parents who've been there with their kids. No tourist traps, no sponsored content - just real recommendations from parents like us.
+              </p>
+            </div>
+          </div>
+          
+          <div style={{ backgroundColor: '#fff', padding: '30px', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', textAlign: 'center' }}>
+            <p style={{ color: '#6b7280', marginBottom: '20px', fontSize: '1.1rem' }}>Found a hidden gem I missed? I'd love to add it!</p>
+            <a 
+              href="mailto:hello@tottrot.com" 
+              style={{
+                display: 'inline-block',
+                padding: '12px 24px',
+                backgroundColor: '#6366f1',
+                color: 'white',
+                textDecoration: 'none',
+                borderRadius: '8px',
+                fontSize: '16px',
+                fontWeight: 'bold'
+              }}
+            >
+              💌 Suggest a Location
+            </a>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Main app
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif', backgroundColor: '#f9fafb', minHeight: '100vh' }}>
       <header style={{ textAlign: 'center', marginBottom: '40px' }}>
-        <h1 style={{ color: '#6366f1', fontSize: '3rem', marginBottom: '10px' }}>🌟 Tot Trot</h1>
-        <p style={{ fontSize: '1.2rem', color: '#4b5563' }}>Parent-Approved Activities in the Bay Area</p>
-        <p style={{ color: '#6b7280' }}>{filteredLocations.length} amazing places found</p>
-        {userLocation && <p style={{ color: '#10b981', fontSize: '14px' }}>📍 Sorted by distance from your location</p>}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1000px', margin: '0 auto' }}>
+          <div style={{ flex: 1 }}></div>
+          <div style={{ textAlign: 'center' }}>
+            <h1 style={{ color: '#6366f1', fontSize: '3rem', marginBottom: '10px' }}>🌟 Tot Trot</h1>
+            <p style={{ fontSize: '1.2rem', color: '#4b5563' }}>Parent-Approved Activities in the Bay Area</p>
+            <p style={{ color: '#6b7280' }}>{filteredLocations.length} amazing places found</p>
+            {userLocation && <p style={{ color: '#10b981', fontSize: '14px' }}>📍 Sorted by distance from your location</p>}
+          </div>
+          <div style={{ flex: 1, textAlign: 'right' }}>
+            <button
+              onClick={() => setCurrentPage('about')}
+              style={{
+                padding: '10px 20px',
+                backgroundColor: '#6366f1',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '14px',
+                cursor: 'pointer',
+                fontWeight: 'bold'
+              }}
+            >
+              ℹ️ About
+            </button>
+          </div>
+        </div>
       </header>
 
       {/* Enhanced Filters */}
@@ -327,14 +494,71 @@ function App() {
                 </div>
               )}
               
-              {/* Address */}
+              {/* Action Buttons & Address */}
               <div style={{ 
-                fontSize: '14px',
-                color: '#6b7280',
-                borderTop: '1px solid #e5e7eb',
-                paddingTop: '12px'
+                display: 'flex', 
+                justifyContent: 'space-between', 
+                alignItems: 'center',
+                marginTop: '16px',
+                paddingTop: '16px',
+                borderTop: '1px solid #e5e7eb'
               }}>
-                📍 {location.address}
+                <div style={{ display: 'flex', gap: '10px' }}>
+                  <button
+                    onClick={() => toggleFavorite(location.id)}
+                    style={{
+                      padding: '8px 12px',
+                      borderRadius: '6px',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontSize: '14px',
+                      fontWeight: 'bold',
+                      backgroundColor: favorites.includes(location.id) ? '#ef4444' : '#f3f4f6',
+                      color: favorites.includes(location.id) ? 'white' : '#374151'
+                    }}
+                    title="Save for Later"
+                  >
+                    {favorites.includes(location.id) ? '❤️ Saved' : '🤍 Save'}
+                  </button>
+                  
+                  <button
+                    onClick={() => shareActivity(location)}
+                    style={{
+                      padding: '8px 12px',
+                      borderRadius: '6px',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontSize: '14px',
+                      fontWeight: 'bold',
+                      backgroundColor: '#3b82f6',
+                      color: 'white'
+                    }}
+                    title="Share Activity"
+                  >
+                    📤 Share
+                  </button>
+                  
+                  <button
+                    onClick={() => getDirections(location.address)}
+                    style={{
+                      padding: '8px 12px',
+                      borderRadius: '6px',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontSize: '14px',
+                      fontWeight: 'bold',
+                      backgroundColor: '#10b981',
+                      color: 'white'
+                    }}
+                    title="Get Directions"
+                  >
+                    🗺️ Directions
+                  </button>
+                </div>
+                
+                <div style={{ fontSize: '14px', color: '#6b7280' }}>
+                  📍 {location.address}
+                </div>
               </div>
             </div>
           ))
@@ -342,7 +566,7 @@ function App() {
       </div>
 
       <footer style={{ textAlign: 'center', marginTop: '40px', color: '#6b7280' }}>
-        <p>Built by parents, for parents ❤️</p>
+        <p>Built by a parent, for parents ❤️</p>
         <p style={{ fontSize: '12px' }}>87 parent-approved locations and counting</p>
       </footer>
     </div>

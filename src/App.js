@@ -14,7 +14,8 @@ function App() {
 
   // New state for additional features
   const [favorites, setFavorites] = useState([]);
-  const [currentPage, setCurrentPage] = useState('home'); // 'home' or 'about'
+  const [currentPage, setCurrentPage] = useState('home'); // 'home', 'about', or 'saved'
+
 
   // Get user location for distance sorting
   useEffect(() => {
@@ -173,6 +174,215 @@ function App() {
       .join(', ');
   };
 
+  // Saved page
+  if (currentPage === 'saved') {
+    const savedLocations = locations.filter(location => favorites.includes(location.id));
+    
+    return (
+      <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif', backgroundColor: '#f9fafb', minHeight: '100vh' }}>
+        <header style={{ textAlign: 'center', marginBottom: '40px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1000px', margin: '0 auto' }}>
+            <div style={{ flex: 1 }}></div>
+            <div style={{ textAlign: 'center' }}>
+              <h1 style={{ color: '#6366f1', fontSize: '3rem', marginBottom: '10px' }}>🌟 Tot Trot</h1>
+              <p style={{ fontSize: '1.2rem', color: '#4b5563' }}>Your Saved Activities</p>
+              <p style={{ color: '#6b7280' }}>{favorites.length} locations saved for later</p>
+            </div>
+            <div style={{ flex: 1, textAlign: 'right' }}>
+              <button
+                onClick={() => setCurrentPage('home')}
+                style={{
+                  padding: '10px 20px',
+                  backgroundColor: '#6b7280',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  cursor: 'pointer',
+                  fontWeight: 'bold'
+                }}
+              >
+                ← Back
+              </button>
+            </div>
+          </div>
+        </header>
+
+        {savedLocations.length === 0 ? (
+          <div style={{ textAlign: 'center', padding: '60px 20px', maxWidth: '600px', margin: '0 auto' }}>
+            <div style={{ fontSize: '4rem', marginBottom: '20px' }}>💔</div>
+            <h2 style={{ color: '#6b7280', fontSize: '1.5rem', marginBottom: '15px' }}>No saved activities yet!</h2>
+            <p style={{ color: '#6b7280', marginBottom: '30px', fontSize: '1.1rem' }}>
+              Start exploring and save activities you want to try with your little one.
+            </p>
+            <button
+              onClick={() => setCurrentPage('home')}
+              style={{
+                padding: '15px 30px',
+                backgroundColor: '#6366f1',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '16px',
+                cursor: 'pointer',
+                fontWeight: 'bold'
+              }}
+            >
+              🌟 Discover Activities
+            </button>
+          </div>
+        ) : (
+          <div style={{ display: 'grid', gap: '20px', maxWidth: '1000px', margin: '0 auto' }}>
+            {savedLocations.map((location, index) => (
+              <div key={location.id} style={{ 
+                border: '1px solid #e5e7eb', 
+                borderRadius: '12px', 
+                padding: '24px',
+                backgroundColor: '#fff',
+                boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                border: '2px solid #ef4444' // Red border to show it's saved
+              }}>
+                {/* Header */}
+                <div style={{ marginBottom: '16px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '8px' }}>
+                    <h3 style={{ color: '#1f2937', margin: 0, fontSize: '1.5rem' }}>
+                      {location.name}
+                    </h3>
+                    <span style={{ color: '#ef4444', fontSize: '12px', fontWeight: 'bold', backgroundColor: '#fee2e2', padding: '4px 8px', borderRadius: '4px' }}>
+                      ❤️ SAVED
+                    </span>
+                  </div>
+                  
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', fontSize: '14px', color: '#6b7280', marginBottom: '8px' }}>
+                    <span>📍 {location.city}, {location.region}</span>
+                    <span>💰 {location.cost}</span>
+                    <span>⏰ {locationsData.filterOptions.duration[location.duration]}</span>
+                  </div>
+
+                  {location.ageRanges && (
+                    <div style={{ fontSize: '14px', color: '#7c3aed', marginBottom: '4px' }}>
+                      👶 <strong>Ages:</strong> {getAgeRangeDisplay(location.ageRanges)}
+                    </div>
+                  )}
+
+                  {location.developmentMilestones && (
+                    <div style={{ fontSize: '14px', color: '#059669', marginBottom: '8px' }}>
+                      🧠 <strong>Development:</strong> {getDevelopmentDisplay(location.developmentMilestones)}
+                    </div>
+                  )}
+                </div>
+                
+                {/* Parent Review */}
+                <div style={{ marginBottom: '16px' }}>
+                  <h4 style={{ color: '#1f2937', fontSize: '1.1rem', marginBottom: '8px' }}>
+                    👨‍👩‍👧‍👦 Parent Review
+                  </h4>
+                  <blockquote style={{ 
+                    fontStyle: 'italic', 
+                    color: '#374151', 
+                    borderLeft: '4px solid #6366f1',
+                    paddingLeft: '16px',
+                    margin: 0,
+                    backgroundColor: '#f8fafc',
+                    padding: '12px 16px',
+                    borderRadius: '6px'
+                  }}>
+                    "{location.parentQuote}"
+                  </blockquote>
+                </div>
+                
+                {/* Pro Tip */}
+                {location.insiderTips && (
+                  <div style={{ 
+                    backgroundColor: '#eff6ff', 
+                    padding: '12px', 
+                    borderRadius: '8px',
+                    marginBottom: '12px'
+                  }}>
+                    <strong style={{ color: '#1e40af', fontSize: '0.9rem' }}>💡 Pro Tip:</strong>
+                    <p style={{ color: '#1e40af', margin: '4px 0 0 0', fontSize: '0.9rem' }}>{location.insiderTips}</p>
+                  </div>
+                )}
+                
+                {/* Action Buttons & Address */}
+                <div style={{ 
+                  display: 'flex', 
+                  justifyContent: 'space-between', 
+                  alignItems: 'center',
+                  marginTop: '16px',
+                  paddingTop: '16px',
+                  borderTop: '1px solid #e5e7eb'
+                }}>
+                  <div style={{ display: 'flex', gap: '10px' }}>
+                    <button
+                      onClick={() => toggleFavorite(location.id)}
+                      style={{
+                        padding: '8px 12px',
+                        borderRadius: '6px',
+                        border: 'none',
+                        cursor: 'pointer',
+                        fontSize: '14px',
+                        fontWeight: 'bold',
+                        backgroundColor: '#ef4444',
+                        color: 'white'
+                      }}
+                      title="Remove from Saved"
+                    >
+                      💔 Remove
+                    </button>
+                    
+                    <button
+                      onClick={() => shareActivity(location)}
+                      style={{
+                        padding: '8px 12px',
+                        borderRadius: '6px',
+                        border: 'none',
+                        cursor: 'pointer',
+                        fontSize: '14px',
+                        fontWeight: 'bold',
+                        backgroundColor: '#3b82f6',
+                        color: 'white'
+                      }}
+                      title="Share Activity"
+                    >
+                      📤 Share
+                    </button>
+                    
+                    <button
+                      onClick={() => getDirections(location.address)}
+                      style={{
+                        padding: '8px 12px',
+                        borderRadius: '6px',
+                        border: 'none',
+                        cursor: 'pointer',
+                        fontSize: '14px',
+                        fontWeight: 'bold',
+                        backgroundColor: '#10b981',
+                        color: 'white'
+                      }}
+                      title="Get Directions"
+                    >
+                      🗺️ Directions
+                    </button>
+                  </div>
+                  
+                  <div style={{ fontSize: '14px', color: '#6b7280' }}>
+                    📍 {location.address}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <footer style={{ textAlign: 'center', marginTop: '40px', color: '#6b7280' }}>
+          <p>Built by a parent, for parents ❤️</p>
+          <p style={{ fontSize: '12px' }}>Plan your next adventure!</p>
+        </footer>
+      </div>
+    );
+  }
+
   // About page
   if (currentPage === 'about') {
     return (
@@ -303,33 +513,80 @@ function App() {
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif', backgroundColor: '#f9fafb', minHeight: '100vh' }}>
       <header style={{ textAlign: 'center', marginBottom: '40px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1000px', margin: '0 auto' }}>
-          <div style={{ flex: 1 }}></div>
-          <div style={{ textAlign: 'center' }}>
-            <h1 style={{ color: '#6366f1', fontSize: '3rem', marginBottom: '10px' }}>🌟 Tot Trot</h1>
-            <p style={{ fontSize: '1.2rem', color: '#4b5563' }}>Parent-Approved Activities in the Bay Area</p>
-            <p style={{ color: '#6b7280' }}>{filteredLocations.length} amazing places found</p>
-            {userLocation && <p style={{ color: '#10b981', fontSize: '14px' }}>📍 Sorted by distance from your location</p>}
-          </div>
-          <div style={{ flex: 1, textAlign: 'right' }}>
-            <button
-              onClick={() => setCurrentPage('about')}
-              style={{
-                padding: '10px 20px',
-                backgroundColor: '#6366f1',
-                color: 'white',
-                border: 'none',
-                borderRadius: '8px',
-                fontSize: '14px',
-                cursor: 'pointer',
-                fontWeight: 'bold'
-              }}
-            >
-              ℹ️ About
-            </button>
-          </div>
-        </div>
-      </header>
+  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1000px', margin: '0 auto' }}>
+    <div style={{ flex: 1 }}></div>
+    <div style={{ textAlign: 'center' }}>
+      <h1 style={{ color: '#6366f1', fontSize: '3rem', marginBottom: '10px' }}>🌟 Tot Trot</h1>
+      <p style={{ fontSize: '1.2rem', color: '#4b5563' }}>
+        {currentPage === 'saved' ? 'Your Saved Activities' : 
+         currentPage === 'about' ? 'About Our Mission' : 
+         'Parent-Approved Activities in the Bay Area'}
+      </p>
+      {currentPage === 'home' && (
+        <>
+          <p style={{ color: '#6b7280' }}>{filteredLocations.length} amazing places found</p>
+          {userLocation && <p style={{ color: '#10b981', fontSize: '14px' }}>📍 Sorted by distance from your location</p>}
+        </>
+      )}
+      {currentPage === 'saved' && (
+        <p style={{ color: '#6b7280' }}>{favorites.length} locations saved for later</p>
+      )}
+    </div>
+    <div style={{ flex: 1, textAlign: 'right', display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
+      {currentPage !== 'home' && (
+        <button
+          onClick={() => setCurrentPage('home')}
+          style={{
+            padding: '10px 20px',
+            backgroundColor: '#6b7280',
+            color: 'white',
+            border: 'none',
+            borderRadius: '8px',
+            fontSize: '14px',
+            cursor: 'pointer',
+            fontWeight: 'bold'
+          }}
+        >
+          ← Back
+        </button>
+      )}
+      {currentPage === 'home' && (
+        <>
+          <button
+            onClick={() => setCurrentPage('saved')}
+            style={{
+              padding: '10px 20px',
+              backgroundColor: '#ef4444',
+              color: 'white',
+              border: 'none',
+              borderRadius: '8px',
+              fontSize: '14px',
+              cursor: 'pointer',
+              fontWeight: 'bold'
+            }}
+          >
+            ❤️ Saved ({favorites.length})
+          </button>
+          <button
+            onClick={() => setCurrentPage('about')}
+            style={{
+              padding: '10px 20px',
+              backgroundColor: '#6366f1',
+              color: 'white',
+              border: 'none',
+              borderRadius: '8px',
+              fontSize: '14px',
+              cursor: 'pointer',
+              fontWeight: 'bold'
+            }}
+          >
+            ℹ️ About
+          </button>
+        </>
+      )}
+    </div>
+  </div>
+</header>
 
       {/* Enhanced Filters */}
       <div style={{ maxWidth: '1000px', margin: '0 auto', marginBottom: '30px', backgroundColor: '#fff', padding: '20px', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
@@ -598,5 +855,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

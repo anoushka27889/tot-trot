@@ -14,7 +14,7 @@
       "duration": "half-day",
       "cost": "$$",
       "coordinates": [37.3382, -122.0922],
-      "parentQuote": "just as fantastic a visit (minus the incredible scenery). Hardly a hidden gem but somewhat under-appreciated",
+      "parentQuote": "Just as fantastic a visit (minus the incredible scenery). Hardly a hidden gem but somewhat under-appreciated",
       "insiderTips": "Under-appreciated compared to Sausalito location. WARNING: Recent parent reports cleanliness issues"
     },
     {
@@ -31,7 +31,7 @@
       "duration": "half-day",
       "cost": "$$",
       "coordinates": [37.8789, -122.2471],
-      "parentQuote": "when kiddo's a little older",
+      "parentQuote": "When kiddo's a little older",
       "insiderTips": "Perfect for older kids. Current special: dinosaur exhibit in courtyard"
     },
     {
@@ -65,7 +65,7 @@
       "duration": "half-day",
       "cost": "$$",
       "coordinates": [37.5630, -122.3255],
-      "parentQuote": "perfect for this age. Kids can run around and don't have to worry",
+      "parentQuote": "Perfect for this age. Kids can run around and don't have to worry",
       "insiderTips": "Perfect for 2.5-3yo. Combine with Magic Mountain + beach. $6 vehicle entry fee"
     },
     {
@@ -73,7 +73,7 @@
       "name": "22nd Street Caltrain Adventure",
       "location": "SF to San Mateo",
       "address": "22nd St Caltrain Station, SF",
-      "region": "Transportation",
+      "region": "San Francisco",
       "city": "San Francisco",
       "type": "Transportation Adventure",
       "ageRanges": ["toddler", "little-kid", "big-kid"],
@@ -82,8 +82,8 @@
       "duration": "half-day",
       "cost": "$",
       "coordinates": [37.7575, -122.3890],
-      "parentQuote": "drive to 22nd Caltrain stop, take train to San Mateo for lunch. Train ride alone is total adventure and sun comes out down there!",
-      "insiderTips": "Sun comes out in San Mateo! Train ride is main attraction. Alt: Burlingame stop - Backhaus + huge playground"
+      "parentQuote": "Drive to 22nd Caltrain stop, take train to San Mateo for lunch. Train ride alone is total adventure and sun comes out down there!",
+      "insiderTips": "Sun comes out in San Mateo! Train ride is the main attraction. Alternative: Burlingame stop - Backhaus restaurant + huge playground"
     },
     {
       "id": 6,
@@ -99,7 +99,7 @@
       "duration": "quick",
       "cost": "Free",
       "coordinates": [37.6688, -122.0808],
-      "parentQuote": "for a quick stroll and seeing the fish and turtles in the pond",
+      "parentQuote": "For a quick stroll and seeing the fish and turtles in the pond",
       "insiderTips": "Quick visit, perfect for short attention spans. Some parents find paths too narrow for strollers"
     },
     {
@@ -116,8 +116,8 @@
       "duration": "half-day",
       "cost": "$$",
       "coordinates": [37.3272, -121.8607],
-      "parentQuote": "literal favorite place as a kid. mysterious broke down attractions and oddities were enthralling",
-      "insiderTips": "Perfect for toddler to 8yr range. Giant playground with background music. Lost charm after renovation"
+      "parentQuote": "Literal favorite place as a kid. Mysterious broken down attractions and oddities were enthralling",
+      "insiderTips": "Perfect for toddler to 8-year range. Giant playground with background music. Lost charm after renovation"
     },
     {
       "id": 8,
@@ -133,7 +133,7 @@
       "duration": "half-day",
       "cost": "$",
       "coordinates": [37.5485, -121.9886],
-      "parentQuote": "so much for kiddos to do and experience there!",
+      "parentQuote": "So much for kiddos to do and experience there!",
       "insiderTips": "Great fall events. Pioneer days recreation with trains and working blacksmith shop"
     },
     {
@@ -150,8 +150,8 @@
       "duration": "quick",
       "cost": "$",
       "coordinates": [37.8916, -122.2461],
-      "parentQuote": "always a winner. ride through the redwoods!",
-      "insiderTips": "Combine with Little Farm and Merry-go-round for full day. Weekend operation"
+      "parentQuote": "Always a winner. Ride through the redwoods!",
+      "insiderTips": "Combine with Little Farm and Merry-Go-Round for full day. Weekend operation"
     },
     {
       "id": 10,
@@ -167,8 +167,8 @@
       "duration": "quick",
       "cost": "Free",
       "coordinates": [37.8916, -122.2461],
-      "parentQuote": "sweet and fun for Littles to bigger Littles",
-      "insiderTips": "Recently banned feeding animals. Very small - 30min walkthrough, always a drive"
+      "parentQuote": "Sweet and fun for littles to bigger littles",
+      "insiderTips": "Recently banned feeding animals. Very small - 30-minute walkthrough, always a drive"
     },
     {
       "id": 11,
@@ -184,7 +184,7 @@
       "duration": "quick",
       "cost": "$",
       "coordinates": [37.8916, -122.2461],
-      "parentQuote": "Adding Tilden Merry Go Round",
+      "parentQuote": "Love the Tilden Merry-Go-Round",
       "insiderTips": "It spins so fast! Parent misses the pink brick popcorn"
     },
     {
@@ -192,8 +192,8 @@
       "name": "Multi-Transit Adventure Loop",
       "location": "RWC to SF to Alameda",
       "address": "Caltrain + Muni + Ferry",
-      "region": "Transportation",
-      "city": "Multiple",
+      "region": "Peninsula",
+      "city": "Redwood City",
       "type": "Transportation Adventure",
       "ageRanges": ["infant", "toddler", "little-kid", "big-kid"],
       "developmentMilestones": ["social", "independence", "cognitive"],
@@ -201,7 +201,7 @@
       "duration": "full-day",
       "cost": "$$",
       "coordinates": [37.7749, -122.4194],
-      "parentQuote": "take Caltrain to SF, trolley to pier, lunch at ferry building, ferry to Alameda and Oakland",
+      "parentQuote": "Take Caltrain to SF, trolley to pier, lunch at ferry building, ferry to Alameda and Oakland",
       "insiderTips": "Perfect for mixed ages. Almost every transit method in one day. Great for naptime"
     },
     {
@@ -218,7 +218,7 @@
       "duration": "half-day",
       "cost": "$$",
       "coordinates": [37.7505, -122.1467],
-      "parentQuote": "Not lesser known but great. Members means don't feel bad if bail after 20min",
+      "parentQuote": "Not lesser known but great. Membership means don't feel bad if you bail after 20 minutes",
       "insiderTips": "Membership recommended for flexibility. Never get tired of it"
     },
     {
@@ -235,8 +235,8 @@
       "duration": "half-day",
       "cost": "$$",
       "coordinates": [37.7330, -122.5035],
-      "parentQuote": "take our 2.5yo all the time. Got membership. Safe for runners",
-      "insiderTips": "Good for toddler runners, big playground. Zoo could use reno but toddlers don't know"
+      "parentQuote": "Take our 2.5yo all the time. Got membership. Safe for runners",
+      "insiderTips": "Good for toddler runners, big playground. Zoo could use renovation but toddlers don't know"
     },
     {
       "id": 15,
@@ -252,8 +252,8 @@
       "duration": "quick",
       "cost": "Free",
       "coordinates": [37.7444, -122.4264],
-      "parentQuote": "perfect for this age. Kids can run around and don't have to worry",
-      "insiderTips": "Perfect for 2.5yo. Part of parent's favs rotation. Safe for toddlers"
+      "parentQuote": "Perfect for this age. Kids can run around and don't have to worry",
+      "insiderTips": "Perfect for 2.5-year-old. Part of parent's favorites rotation. Safe for toddlers"
     },
     {
       "id": 16,
@@ -269,7 +269,7 @@
       "duration": "quick",
       "cost": "Free",
       "coordinates": [37.7575, -122.3890],
-      "parentQuote": "the little park on 22nd in Dogpatch because perfect for this age",
+      "parentQuote": "The little park on 22nd in Dogpatch is perfect for this age",
       "insiderTips": "Local favorite, safe for toddlers. Near Caltrain station for combo trips"
     },
     {
@@ -286,8 +286,8 @@
       "duration": "half-day",
       "cost": "$",
       "coordinates": [37.8044, -122.2712],
-      "parentQuote": "has a metric ton of locations",
-      "insiderTips": "Roberts Park play structure is amazing. Pool is magical when raining off redwood trees"
+      "parentQuote": "Has a metric ton of locations",
+      "insiderTips": "Roberts Park play structure is amazing. Pool is magical when it's raining off redwood trees"
     },
     {
       "id": 18,
@@ -304,7 +304,7 @@
       "cost": "Free",
       "coordinates": [37.6688, -122.0808],
       "parentQuote": "Really solid place for ages 2-5",
-      "insiderTips": "All-access park for kids, nice shade for picnic. WARNING: Swings squeak badly - bring lubricant"
+      "insiderTips": "All-access park for kids, nice shade for picnic. WARNING: Swings squeak badly - bring white lithium grease"
     },
     {
       "id": 19,
@@ -320,7 +320,7 @@
       "duration": "half-day",
       "cost": "Free",
       "coordinates": [37.7989, -122.4662],
-      "parentQuote": "absolutely incredibly designed spaces for kids, and they are free!",
+      "parentQuote": "Absolutely incredibly designed spaces for kids, and they are free!",
       "insiderTips": "Food trucks available, great views. Well-designed playground area"
     },
     {
@@ -337,8 +337,8 @@
       "duration": "quick",
       "cost": "Free",
       "coordinates": [37.7989, -122.4662],
-      "parentQuote": "absolutely incredibly designed spaces for kids, and they are free!",
-      "insiderTips": "Sand + water stations perfect for 2yo. BRING change of clothes - will get soaked"
+      "parentQuote": "Absolutely incredibly designed spaces for kids, and they are free!",
+      "insiderTips": "Sand + water stations perfect for 2-year-old. BRING change of clothes - will get soaked"
     },
     {
       "id": 21,
@@ -354,7 +354,7 @@
       "duration": "half-day",
       "cost": "$$",
       "coordinates": [38.2917, -122.4581],
-      "parentQuote": "great for the little ones",
+      "parentQuote": "Great for the little ones",
       "insiderTips": "Go Tuesday for Tuesday night market combo in town square. Multiple parent recommendations"
     },
     {
@@ -371,7 +371,7 @@
       "duration": "half-day",
       "cost": "Free",
       "coordinates": [36.9741, -122.0308],
-      "parentQuote": "park by library and walk to beach, if that's still possible",
+      "parentQuote": "Park by library and walk to beach, if that's still possible",
       "insiderTips": "Marine Education Center nearby. Not sure of current hours/accessibility"
     },
     {
@@ -389,7 +389,7 @@
       "cost": "$",
       "coordinates": [37.7249, -122.0797],
       "parentQuote": "I came here to suggest Cull Canyon!",
-      "insiderTips": "Don Castro nearby sometimes less crowded. Note: Castro Valley not San Ramon"
+      "insiderTips": "Don Castro nearby, sometimes less crowded. Note: Castro Valley not San Ramon"
     },
     {
       "id": 24,
@@ -405,7 +405,7 @@
       "duration": "half-day",
       "cost": "$",
       "coordinates": [37.7249, -122.0797],
-      "parentQuote": "sometimes a little less crowded than Cull Canyon",
+      "parentQuote": "Sometimes a little less crowded than Cull Canyon",
       "insiderTips": "Alternative when Cull Canyon is busy. On Hayward/Castro Valley border"
     },
     {
@@ -423,14 +423,14 @@
       "cost": "Free",
       "coordinates": [37.5249, -122.5117],
       "parentQuote": "Pick a day with negative tide",
-      "insiderTips": "NOT safe for toddlers - very slippery on reef. NO TOUCH rule difficult with young kids"
+      "insiderTips": "NOT safe for toddlers - very slippery on reef. NO TOUCH rule difficult with young kids. Check tide charts, wear boots"
     },
     {
       "id": 26,
       "name": "SFO Airport Adventure",
       "location": "San Francisco",
       "address": "San Francisco Airport",
-      "region": "Transportation",
+      "region": "San Francisco",
       "city": "San Francisco",
       "type": "Transportation Adventure",
       "ageRanges": ["toddler", "little-kid"],
@@ -439,8 +439,8 @@
       "duration": "half-day",
       "cost": "$",
       "coordinates": [37.6213, -122.3790],
-      "parentQuote": "buy cheapest ticket, ride tram between terminals, watch planes",
-      "insiderTips": "Access lounges with credit cards. Half day fun for $20. Hit multiple lounges, count gates"
+      "parentQuote": "Buy cheapest ticket, ride tram between terminals, watch planes",
+      "insiderTips": "Access lounges with credit cards. Half day of fun for $20. Hit multiple lounges, count gates"
     },
     {
       "id": 27,
@@ -473,7 +473,7 @@
       "duration": "half-day",
       "cost": "$$",
       "coordinates": [37.9780, -122.0311],
-      "parentQuote": "PixieLand in Concord",
+      "parentQuote": "Love PixieLand in Concord",
       "insiderTips": "Small amusement park for younger kids. Multiple mentions"
     },
     {
@@ -491,7 +491,7 @@
       "cost": "$",
       "coordinates": [37.5630, -122.3255],
       "parentQuote": "All the kids love Magic Mountain Playground",
-      "insiderTips": "At Coyote Point with CuriOdyssey and beach. Setup picnic on beach, watch kitesurfers"
+      "insiderTips": "At Coyote Point with CuriOdyssey and beach. Set up picnic on beach, watch kitesurfers"
     },
     {
       "id": 30,
@@ -507,7 +507,7 @@
       "duration": "quick",
       "cost": "Free",
       "coordinates": [37.4852, -122.2364],
-      "parentQuote": "Magical Bridge playgrounds",
+      "parentQuote": "Love the Magical Bridge playgrounds",
       "insiderTips": "One of three locations mentioned. Designed for all abilities"
     },
     {
@@ -524,7 +524,7 @@
       "duration": "quick",
       "cost": "Free",
       "coordinates": [37.4419, -122.1430],
-      "parentQuote": "Magical Bridge playgrounds",
+      "parentQuote": "Love the Magical Bridge playgrounds",
       "insiderTips": "One of three locations mentioned. Designed for all abilities"
     },
     {
@@ -558,8 +558,8 @@
       "duration": "half-day",
       "cost": "$$",
       "coordinates": [37.8044, -122.2712],
-      "parentQuote": "Chabot space and science (Oakland)",
-      "insiderTips": "Good for older kids. 60-120 min visit slots work well"
+      "parentQuote": "Chabot Space and Science Center in Oakland",
+      "insiderTips": "Good for older kids. 60-120 minute visit slots work well"
     },
     {
       "id": 34,
@@ -575,8 +575,8 @@
       "duration": "half-day",
       "cost": "$$",
       "coordinates": [37.8044, -122.2712],
-      "parentQuote": "good size for families and has really nice garden",
-      "insiderTips": "California exhibit great, play area for toddlers. Nice garden for toddling around"
+      "parentQuote": "Good size for families and has a really nice garden",
+      "insiderTips": "California exhibit is great, play area for toddlers. Nice garden for toddling around"
     },
     {
       "id": 35,
@@ -592,7 +592,7 @@
       "duration": "quick",
       "cost": "Free",
       "coordinates": [37.8044, -122.2712],
-      "parentQuote": "Walk around lake Merritt",
+      "parentQuote": "Walk around Lake Merritt",
       "insiderTips": "Great for walks and duck watching. Free outdoor activity"
     },
     {
@@ -609,7 +609,7 @@
       "duration": "half-day",
       "cost": "$$",
       "coordinates": [37.5485, -121.9886],
-      "parentQuote": "water park that's awesome for kids (and parents). lazy river is fantastic",
+      "parentQuote": "Water park that's awesome for kids (and parents). Lazy river is fantastic",
       "insiderTips": "Go early, rent a cabana. No outside food allowed"
     },
     {
@@ -626,7 +626,7 @@
       "duration": "half-day",
       "cost": "Free",
       "coordinates": [37.7652, -122.2416],
-      "parentQuote": "Crab cove in alameda",
+      "parentQuote": "Crab Cove in Alameda",
       "insiderTips": "Good beach for families. Some sort of science exhibit at north end"
     },
     {
@@ -643,7 +643,7 @@
       "duration": "quick",
       "cost": "Free",
       "coordinates": [37.8044, -122.2712],
-      "parentQuote": "Oakland rose garden",
+      "parentQuote": "Oakland Rose Garden",
       "insiderTips": "Beautiful garden space. Free outdoor activity"
     },
     {
@@ -660,7 +660,7 @@
       "duration": "half-day",
       "cost": "Free",
       "coordinates": [37.7652, -122.2416],
-      "parentQuote": "our kids enjoyed wading at Crown beach. super shallow and mild",
+      "parentQuote": "Our kids enjoyed wading at Crown Beach. Super shallow and mild",
       "insiderTips": "Perfect for young kids - very shallow water. Some sort of science exhibit at north end"
     },
     {
@@ -694,7 +694,7 @@
       "duration": "quick",
       "cost": "Free",
       "coordinates": [37.8715, -122.2730],
-      "parentQuote": "Buy cheap kites and fly them at the Berkeley marina. So fun!",
+      "parentQuote": "Buy cheap kites and fly them at the Berkeley Marina. So fun!",
       "insiderTips": "Great open space for kite flying. Also good for Fort Funston"
     },
     {
@@ -711,8 +711,8 @@
       "duration": "quick",
       "cost": "Free",
       "coordinates": [37.8715, -122.2730],
-      "parentQuote": "fond memories of going to Cordonices Park as a kid. still there and kids love it",
-      "insiderTips": "Big concrete slide (bring cardboard). Go through tunnel to view Berkeley rose gardens"
+      "parentQuote": "Fond memories of going to Cordonices Park as a kid. Still there and kids love it",
+      "insiderTips": "Big concrete slide (bring cardboard). Go through tunnel to view Berkeley Rose Gardens"
     },
     {
       "id": 43,
@@ -728,7 +728,7 @@
       "duration": "quick",
       "cost": "Free",
       "coordinates": [37.8715, -122.2730],
-      "parentQuote": "view the Berkeley rose gardens",
+      "parentQuote": "View the Berkeley Rose Gardens",
       "insiderTips": "Beautiful rose garden. Access via Cordonices Park tunnel or street crossing"
     },
     {
@@ -745,7 +745,7 @@
       "duration": "half-day",
       "cost": "Free",
       "coordinates": [37.7652, -122.2416],
-      "parentQuote": "Walk from Washington park down to crab cove beach. perfect",
+      "parentQuote": "Walk from Washington Park down to Crab Cove beach. Perfect!",
       "insiderTips": "Giant playground/park, walk to beach in 1/4 mile. Grassy fields, sand, waves"
     },
     {
@@ -762,8 +762,8 @@
       "duration": "quick",
       "cost": "Free",
       "coordinates": [37.8715, -122.2730],
-      "parentQuote": "my kid loooooved it there at that age. Oh, Totland is so good",
-      "insiderTips": "Perfect for 2.5-3yo age range. Not sure current condition"
+      "parentQuote": "My kid loved it there at that age. Oh, Totland is so good!",
+      "insiderTips": "Perfect for 2.5-3-year-old age range. Not sure of current condition"
     },
     {
       "id": 46,
@@ -779,7 +779,7 @@
       "duration": "quick",
       "cost": "Free",
       "coordinates": [37.8238, -122.2312],
-      "parentQuote": "Dracena park in piedmont",
+      "parentQuote": "Dracena Park in Piedmont",
       "insiderTips": "Nice neighborhood park. Small local park"
     },
     {
@@ -796,7 +796,7 @@
       "duration": "half-day",
       "cost": "Free",
       "coordinates": [37.8324, -122.5263],
-      "parentQuote": "fun crabbing class off a pier at Ft. Cronkite",
+      "parentQuote": "Fun crabbing class off a pier at Fort Cronkite",
       "insiderTips": "National Park Service activities for kids. Has other activities beyond crabbing"
     },
     {
@@ -813,7 +813,7 @@
       "duration": "quick",
       "cost": "Free",
       "coordinates": [37.8324, -122.5263],
-      "parentQuote": "marine mammal center in Marin Headlands",
+      "parentQuote": "Marine Mammal Center in Marin Headlands",
       "insiderTips": "Educational wildlife experience. Free wildlife center"
     },
     {
@@ -830,7 +830,7 @@
       "duration": "half-day",
       "cost": "$$",
       "coordinates": [37.9735, -122.5311],
-      "parentQuote": "Fox and Kit (we like to go right when it opens for an hour or two before it gets crowded)",
+      "parentQuote": "Fox and Kit - we like to go right when it opens for an hour or two before it gets crowded",
       "insiderTips": "Go when it opens to avoid crowds. Indoor play space with cafe"
     },
     {
@@ -847,8 +847,8 @@
       "duration": "quick",
       "cost": "$",
       "coordinates": [37.9063, -122.0648],
-      "parentQuote": "Lindsay Wildlife Encounter, First Avenue walnut creek",
-      "insiderTips": "Larky Park next door for outdoor play. When littles get tired of inside"
+      "parentQuote": "Lindsay Wildlife Encounter on First Avenue in Walnut Creek",
+      "insiderTips": "Larky Park next door for outdoor play. When littles get tired of being inside, go to adjacent park"
     },
     {
       "id": 73,
@@ -872,7 +872,7 @@
       "name": "Water Taxi - Jack London Square to Alameda",
       "location": "Oakland to Alameda",
       "address": "Jack London Square, Oakland",
-      "region": "Transportation",
+      "region": "East Bay",
       "city": "Oakland",
       "type": "Transportation Adventure",
       "ageRanges": ["toddler", "little-kid", "big-kid"],
@@ -881,7 +881,7 @@
       "duration": "half-day",
       "cost": "Free",
       "coordinates": [37.7955, -122.2730],
-      "parentQuote": "It's a free 2-minute boat ride from Jack London square to Alameda and drops you off right at a great playground",
+      "parentQuote": "It's a free 2-minute boat ride from Jack London Square to Alameda and drops you off right at a great playground",
       "insiderTips": "Memorable and easy outing with small kids. Drops off near Target, Safeway, Michaels, food options"
     },
     {
@@ -898,8 +898,8 @@
       "duration": "half-day",
       "cost": "Free",
       "coordinates": [37.8338, -122.2097],
-      "parentQuote": "It's got two playgrounds - gated one for toddlers, bigger one for older kids. pond with water fountain and lots of geese",
-      "insiderTips": "Good for various age groups 6mo to 4yrs. Watch out for geese poop. Free parking across street"
+      "parentQuote": "It's got two playgrounds - gated one for toddlers, bigger one for older kids. Pond with water fountain and lots of geese",
+      "insiderTips": "Good for various age groups 6 months to 4 years. Watch out for geese poop. Free parking across street"
     }
   ],
   "filterOptions": {
@@ -910,7 +910,6 @@
       "Peninsula": ["San Mateo", "Palo Alto", "Redwood City", "Mountain View"],
       "North Bay": ["Sonoma", "San Rafael", "Sausalito"],
       "South Bay": ["San Jose", "Gilroy"],
-      "Transportation": ["Multiple"],
       "Other Bay Area": ["Santa Cruz", "Half Moon Bay"]
     },
     "ageRanges": {

@@ -383,131 +383,115 @@ function App() {
     );
   }
 
-  // About page
-  if (currentPage === 'about') {
-    return (
-      <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif', backgroundColor: '#f9fafb', minHeight: '100vh' }}>
-        <header style={{ textAlign: 'center', marginBottom: '40px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1000px', margin: '0 auto' }}>
-            <div style={{ flex: 1 }}></div>
-            <div style={{ textAlign: 'center' }}>
-              <h1 style={{ color: '#6366f1', fontSize: '3rem', marginBottom: '10px' }}>🌟 Tot Trot</h1>
-              <p style={{ fontSize: '1.2rem', color: '#4b5563' }}>About Our Mission</p>
-            </div>
-            <div style={{ flex: 1, textAlign: 'right' }}>
-              <button
-                onClick={() => setCurrentPage('home')}
-                style={{
-                  padding: '10px 20px',
-                  backgroundColor: '#6366f1',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '8px',
-                  fontSize: '14px',
-                  cursor: 'pointer',
-                  fontWeight: 'bold'
-                }}
-              >
-                ← Back to Activities
-              </button>
-            </div>
+ // About page
+if (currentPage === 'about') {
+  return (
+    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif', backgroundColor: '#f9fafb', minHeight: '100vh' }}>
+      <header style={{ textAlign: 'center', marginBottom: '40px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1000px', margin: '0 auto' }}>
+          <div style={{ flex: 1 }}></div>
+          <div style={{ textAlign: 'center' }}>
+            <h1 style={{ color: '#6366f1', fontSize: '3rem', marginBottom: '10px' }}>🌟 Tot Trot</h1>
+            <p style={{ fontSize: '1.2rem', color: '#4b5563' }}>About Our Mission</p>
           </div>
-        </header>
-
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <div style={{ backgroundColor: '#fff', padding: '40px', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', marginBottom: '30px' }}>
-            <h2 style={{ color: '#1f2937', fontSize: '2rem', marginBottom: '20px' }}>About Tot Trot</h2>
-            
-         <div style={{ backgroundColor: '#fef3c7', padding: '20px', borderRadius: '8px', marginBottom: '25px' }}>
-  <h3 style={{ color: '#92400e', fontSize: '1.3rem', marginBottom: '15px' }}>👋 My Story</h3>
-  <p style={{ color: '#92400e', marginBottom: '15px' }}>
-    I moved to America in 2022 and have an almost 2-year-old, and the Bay Area has been incredible. But I realized I wanted to discover this amazing place WITH my kid, using local parent wisdom instead of the same tourist recommendations everyone gets.
-  </p>
-  <p style={{ color: '#92400e', marginBottom: '15px' }}>
-    I was tired of always being the one following along when making plans with other parent friends. I wanted to explore beyond the handful of spots I already knew and be the one suggesting that perfect hidden gem for once.
-  </p>
-  <p style={{ color: '#92400e' }}>
-    Last week, I posted a simple question on Reddit asking Bay Area parents for their favorite kid-friendly spots. The response was overwhelming - 150+ comments and 450+ shares! That validation made me realize other parents need this resource too.
-  </p>
-</div>
-
-<h3 style={{ color: '#6366f1', fontSize: '1.3rem', marginBottom: '15px' }}>🚀 How This All Came Together</h3>
-<p style={{ color: '#4b5563', marginBottom: '20px' }}>
-  I spent this past week collecting every recommendation from that Reddit thread and others, keeping all the parent quotes and insider tips as authentic as possible. No editing or sugar-coating - just real wisdom from parents who've actually been there with their kids.
-</p>
-
-<div style={{ backgroundColor: '#dbeafe', padding: '20px', borderRadius: '8px', marginBottom: '25px' }}>
-  <h4 style={{ color: '#1e40af', marginBottom: '10px' }}>🎯 My Vision</h4>
-  <p style={{ color: '#1e40af', marginBottom: '10px' }}>
-    I want to build a community where parents discover, share, and plan adventures - big or small - with their kids. Whether you're having an SOS "we need to get out of the house NOW" moment or planning ahead with other parent friends, I want this to be in your corner.
-  </p>
-</div>
-
-<h3 style={{ color: '#6366f1', fontSize: '1.3rem', marginBottom: '15px' }}>✨ What We Have Right Now</h3>
-<div style={{ color: '#4b5563', marginBottom: '20px' }}>
-  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '10px' }}>
-    <div>• 87 locations recommended by actual parents</div>
-    <div>• Distance sorting from your location</div>
-    <div>• Age-appropriate filters</div>
-    <div>• Authentic parent quotes and tips</div>
-    <div>• Bookmark locations for later</div>
-    <div>• Get directions via Google Maps</div>
-    <div>• Share activities with other parents</div>
-  </div>
-</div>
-
-<div style={{ backgroundColor: '#ecfdf5', padding: '20px', borderRadius: '8px' }}>
-  <h4 style={{ color: '#065f46', marginBottom: '10px' }}>🤝 This Is Just the Beginning</h4>
-  <p style={{ color: '#065f46', marginBottom: '10px' }}>
-    This isn't visually designed yet - I'm focused on testing whether this is actually valuable for parents like us. Your feedback will determine what this becomes and what features matter most.
-  </p>
-  <p style={{ color: '#065f46' }}>
-    I'm looking for honest thoughts on what's missing, what could be removed, and everything in between. Is this how you think about planning activities with your kids?
-  </p>
-</div>
-
-<div style={{ backgroundColor: '#fff', padding: '30px', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', textAlign: 'center' }}>
-  <p style={{ color: '#6b7280', marginBottom: '15px', fontSize: '1.1rem' }}>I'd love your feedback on what's working and what's not!</p>
-  <p style={{ color: '#6b7280', marginBottom: '20px', fontSize: '0.9rem' }}>Found a hidden gem I missed? Have ideas for features? Just want to share your thoughts?</p>
-  <a 
-    href="mailto:feedback@tottrot.com" 
-    style={{
-      display: 'inline-block',
-      padding: '12px 24px',
-      backgroundColor: '#6366f1',
-      color: 'white',
-      textDecoration: 'none',
-      borderRadius: '8px',
-      fontSize: '16px',
-      fontWeight: 'bold'
-    }}
-  >
-    💌 Send Feedback
-  </a>
-</div>
-          
-          <div style={{ backgroundColor: '#fff', padding: '30px', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', textAlign: 'center' }}>
-            <p style={{ color: '#6b7280', marginBottom: '20px', fontSize: '1.1rem' }}>Found a hidden gem I missed? I'd love to add it!</p>
-            <a 
-              href="mailto:hello@tottrot.com" 
+          <div style={{ flex: 1, textAlign: 'right' }}>
+            <button
+              onClick={() => setCurrentPage('home')}
               style={{
-                display: 'inline-block',
-                padding: '12px 24px',
+                padding: '10px 20px',
                 backgroundColor: '#6366f1',
                 color: 'white',
-                textDecoration: 'none',
+                border: 'none',
                 borderRadius: '8px',
-                fontSize: '16px',
+                fontSize: '14px',
+                cursor: 'pointer',
                 fontWeight: 'bold'
               }}
             >
-              💌 Suggest a Location
-            </a>
+              ← Back to Activities
+            </button>
           </div>
         </div>
+      </header>
+
+      <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+        {/* Main content section */}
+        <div style={{ backgroundColor: '#fff', padding: '40px', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', marginBottom: '30px' }}>
+          <h2 style={{ color: '#1f2937', fontSize: '2rem', marginBottom: '20px' }}>About Tot Trot</h2>
+          
+          <div style={{ backgroundColor: '#fef3c7', padding: '20px', borderRadius: '8px', marginBottom: '25px' }}>
+            <h3 style={{ color: '#92400e', fontSize: '1.3rem', marginBottom: '15px' }}>👋 My Story</h3>
+            <p style={{ color: '#92400e', marginBottom: '15px' }}>
+              I moved to America in 2022 and have an almost 2-year-old, and the Bay Area has been incredible. But I realized I wanted to discover this amazing place WITH my kid, using local parent wisdom instead of the same tourist recommendations everyone gets.
+            </p>
+            <p style={{ color: '#92400e', marginBottom: '15px' }}>
+              I was tired of always being the one following along when making plans with other parent friends. I wanted to explore beyond the handful of spots I already knew and be the one suggesting that perfect hidden gem for once.
+            </p>
+            <p style={{ color: '#92400e' }}>
+              Last week, I posted a simple question on Reddit asking Bay Area parents for their favorite kid-friendly spots. The response was overwhelming - 150+ comments and 450+ shares! That validation made me realize other parents need this resource too.
+            </p>
+          </div>
+
+          <h3 style={{ color: '#6366f1', fontSize: '1.3rem', marginBottom: '15px' }}>🚀 How This All Came Together</h3>
+          <p style={{ color: '#4b5563', marginBottom: '20px' }}>
+            I spent this past week collecting every recommendation from that Reddit thread and others, keeping all the parent quotes and insider tips as authentic as possible. No editing or sugar-coating - just real wisdom from parents who've actually been there with their kids.
+          </p>
+
+          <div style={{ backgroundColor: '#dbeafe', padding: '20px', borderRadius: '8px', marginBottom: '25px' }}>
+            <h4 style={{ color: '#1e40af', marginBottom: '10px' }}>🎯 My Vision</h4>
+            <p style={{ color: '#1e40af', marginBottom: '10px' }}>
+              I want to build a community where parents discover, share, and plan adventures - big or small - with their kids. Whether you're having an SOS "we need to get out of the house NOW" moment or planning ahead with other parent friends, I want this to be in your corner.
+            </p>
+          </div>
+
+          <h3 style={{ color: '#6366f1', fontSize: '1.3rem', marginBottom: '15px' }}>✨ What We Have Right Now</h3>
+          <div style={{ color: '#4b5563', marginBottom: '20px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '10px' }}>
+              <div>• 87 locations recommended by actual parents</div>
+              <div>• Distance sorting from your location</div>
+              <div>• Age-appropriate filters</div>
+              <div>• Authentic parent quotes and tips</div>
+              <div>• Bookmark locations for later</div>
+              <div>• Get directions via Google Maps</div>
+              <div>• Share activities with other parents</div>
+            </div>
+          </div>
+
+          <div style={{ backgroundColor: '#ecfdf5', padding: '20px', borderRadius: '8px' }}>
+            <h4 style={{ color: '#065f46', marginBottom: '10px' }}>🤝 This Is Just the Beginning</h4>
+            <p style={{ color: '#065f46', marginBottom: '10px' }}>
+              This isn't visually designed yet - I'm focused on testing whether this is actually valuable for parents like us. Your feedback will determine what this becomes and what features matter most.
+            </p>
+            <p style={{ color: '#065f46' }}>
+              I'm looking for honest thoughts on what's missing, what could be removed, and everything in between. Is this how you think about planning activities with your kids?
+            </p>
+          </div>
+        </div>
+        
+        {/* Feedback section - NOW OUTSIDE the main content div */}
+        <div style={{ backgroundColor: '#fff', padding: '30px', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', textAlign: 'center' }}>
+          <p style={{ color: '#6b7280', marginBottom: '15px', fontSize: '1.1rem' }}>I'd love your feedback on what's working and what's not!</p>
+          <p style={{ color: '#6b7280', marginBottom: '20px', fontSize: '0.9rem' }}>Found a hidden gem I missed? Have ideas for features? Just want to share your thoughts?</p>
+          <a 
+            href="mailto:feedback@tottrot.com" 
+            style={{
+              display: 'inline-block',
+              padding: '12px 24px',
+              backgroundColor: '#6366f1',
+              color: 'white',
+              textDecoration: 'none',
+              borderRadius: '8px',
+              fontSize: '16px',
+              fontWeight: 'bold'
+            }}
+          >
+            💌 Send Feedback
+          </a>
+        </div>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
   // Main app
   return (

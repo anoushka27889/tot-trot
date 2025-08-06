@@ -1,0 +1,100 @@
+{
+  "locations": [
+    {
+      "id": 1,
+      "name": "Adventure Playground",
+      "location": "Berkeley Marina",
+      "address": "160 University Ave, Berkeley, CA",
+      "region": "East Bay",
+      "type": "Adventure Play",
+      "ageRange": "5+",
+      "cost": "Free",
+      "parentQuote": "My kids adored that place and despite my worries, never got injured",
+      "insiderTips": "Called 'Tetanus Park' by locals. Kids can hammer, saw, paint for hours"
+    },
+    {
+      "id": 2,
+      "name": "CuriOdyssey",
+      "location": "San Mateo", 
+      "address": "401 El Camino Real, San Mateo, CA",
+      "region": "Peninsula",
+      "type": "Science Museum",
+      "ageRange": "2-5",
+      "cost": "$$",
+      "parentQuote": "perfect for this age. Kids can run around and don't have to worry",
+      "insiderTips": "Combine with Magic Mountain Playground at Coyote Point"
+    },
+    {
+      "id": 3,
+      "name": "Tilden Little Farm",
+      "location": "Berkeley",
+      "address": "Tilden Regional Park, Berkeley, CA",
+      "region": "East Bay", 
+      "type": "Farm Animals",
+      "ageRange": "0-8",
+      "cost": "Free",
+      "parentQuote": "sweet and fun for Littles to bigger Littles",
+      "insiderTips": "Recently banned feeding. Very small - 30min walkthrough"
+    },
+    {
+      "id": 4,
+      "name": "Happy Hollow",
+      "location": "San Jose",
+      "address": "748 Story Rd, San Jose, CA",
+      "region": "South Bay",
+      "type": "Zoo + Amusement", 
+      "ageRange": "Toddlers-8yrs",
+      "cost": "$$",
+      "parentQuote": "literal favorite place as a kid. mysterious broke down attractions",
+      "insiderTips": "Giant playground with background music"
+    },
+    {
+      "id": 5,
+      "name": "Lawrence Hall of Science",
+      "location": "Berkeley",
+      "address": "1 Centennial Dr, Berkeley, CA",
+      "region": "East Bay",
+      "type": "Science Museum",
+      "ageRange": "4+",
+      "cost": "$$",
+      "parentQuote": "when kiddo's a little older",
+      "insiderTips": "Current special: dinosaur exhibit in courtyard"
+    },
+    {
+      "id": 6,
+      "name": "Hayward Japanese Gardens",
+      "location": "Hayward",
+      "address": "22373 N 3rd St, Hayward, CA",
+      "region": "East Bay",
+      "type": "Nature/Gardens",
+      "ageRange": "All ages",
+      "cost": "Free",
+      "parentQuote": "for a quick stroll and seeing the fish and turtles in the pond",
+      "insiderTips": "Quick visit, perfect for short attention spans"
+    },
+    {
+      "id": 7,
+      "name": "Children's Discovery Museum",
+      "location": "San Jose",
+      "address": "180 Woz Way, San Jose, CA",
+      "region": "South Bay",
+      "type": "Children's Museum",
+      "ageRange": "2-8",
+      "cost": "$$",
+      "parentQuote": "just as fantastic a visit, somewhat under-appreciated",
+      "insiderTips": "Under-appreciated compared to Sausalito location"
+    },
+    {
+      "id": 8,
+      "name": "Presidio Tunnel Tops",
+      "location": "San Francisco",
+      "address": "210 Lincoln Blvd, San Francisco, CA",
+      "region": "San Francisco",
+      "type": "Playground",
+      "ageRange": "2-8",
+      "cost": "Free",
+      "parentQuote": "absolutely incredibly designed spaces for kids, and they are free!",
+      "insiderTips": "Food trucks available, great views"
+    }
+  ]
+}

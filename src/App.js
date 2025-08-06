@@ -208,47 +208,73 @@ function App() {
           <div style={{ backgroundColor: '#fff', padding: '40px', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', marginBottom: '30px' }}>
             <h2 style={{ color: '#1f2937', fontSize: '2rem', marginBottom: '20px' }}>About Tot Trot</h2>
             
-            <div style={{ backgroundColor: '#fef3c7', padding: '20px', borderRadius: '8px', marginBottom: '25px' }}>
-              <h3 style={{ color: '#92400e', fontSize: '1.3rem', marginBottom: '15px' }}>👋 My Story</h3>
-              <p style={{ color: '#92400e', marginBottom: '15px' }}>
-                Hi! I'm a parent who moved to the Bay Area from out of state, and I quickly realized something: weekends with kids here can be overwhelming when you don't know the area.
-              </p>
-              <p style={{ color: '#92400e', marginBottom: '15px' }}>
-                I'd spend Friday nights frantically googling "things to do with kids Bay Area" and getting the same generic results - Pier 39, Golden Gate Park, the usual tourist spots. But what about the hidden gems? The places where local parents actually take their kids?
-              </p>
-              <p style={{ color: '#92400e' }}>
-                After too many disappointing weekend adventures and overpaying for crowded attractions, I decided to do something about it. I dove deep into parent communities online to find the REAL recommendations.
-              </p>
-            </div>
-            
-            <h3 style={{ color: '#6366f1', fontSize: '1.3rem', marginBottom: '15px' }}>🔍 How I Built This</h3>
-            <p style={{ color: '#4b5563', marginBottom: '20px' }}>
-              I spent months combing through Reddit threads, Facebook parent groups, and local community boards to find activities that parents actually recommend - not just the obvious spots, but the authentic, local favorites that make weekends special.
-            </p>
-            
-            <div style={{ backgroundColor: '#dbeafe', padding: '20px', borderRadius: '8px', marginBottom: '25px' }}>
-              <h4 style={{ color: '#1e40af', marginBottom: '10px' }}>📊 My Research Process:</h4>
-              <ul style={{ color: '#1e40af', marginLeft: '20px' }}>
-                <li>Analyzed 100+ Reddit posts from r/BayAreaParents and local subreddits</li>
-                <li>Collected every authentic parent quote and insider tip I could find</li>
-                <li>Verified locations, hours, and practical details</li>
-                <li>Organized everything by age-appropriate developmental benefits</li>
-                <li>Added distance sorting because nobody wants to drive across the whole Bay Area</li>
-              </ul>
-            </div>
-            
-            <h3 style={{ color: '#6366f1', fontSize: '1.3rem', marginBottom: '15px' }}>💡 What Makes This Different</h3>
-            <p style={{ color: '#4b5563', marginBottom: '20px' }}>
-              Every location includes authentic parent quotes and practical insider tips - because there's a huge difference between what sounds good online and what actually works when you're there with real kids on a Saturday morning.
-            </p>
-            
-            <div style={{ backgroundColor: '#ecfdf5', padding: '20px', borderRadius: '8px' }}>
-              <h4 style={{ color: '#065f46', marginBottom: '10px' }}>📍 87 Parent-Approved Locations</h4>
-              <p style={{ color: '#065f46' }}>
-                From free neighborhood parks to unique adventures, every single spot has been recommended by actual Bay Area parents who've been there with their kids. No tourist traps, no sponsored content - just real recommendations from parents like us.
-              </p>
-            </div>
-          </div>
+         <div style={{ backgroundColor: '#fef3c7', padding: '20px', borderRadius: '8px', marginBottom: '25px' }}>
+  <h3 style={{ color: '#92400e', fontSize: '1.3rem', marginBottom: '15px' }}>👋 My Story</h3>
+  <p style={{ color: '#92400e', marginBottom: '15px' }}>
+    I moved to America in 2022 and have an almost 2-year-old, and the Bay Area has been incredible. But I realized I wanted to discover this amazing place WITH my kid, using local parent wisdom instead of the same tourist recommendations everyone gets.
+  </p>
+  <p style={{ color: '#92400e', marginBottom: '15px' }}>
+    I was tired of always being the one following along when making plans with other parent friends. I wanted to explore beyond the handful of spots I already knew and be the one suggesting that perfect hidden gem for once.
+  </p>
+  <p style={{ color: '#92400e' }}>
+    Last week, I posted a simple question on Reddit asking Bay Area parents for their favorite kid-friendly spots. The response was overwhelming - 150+ comments and 450+ shares! That validation made me realize other parents need this resource too.
+  </p>
+</div>
+
+<h3 style={{ color: '#6366f1', fontSize: '1.3rem', marginBottom: '15px' }}>🚀 How This All Came Together</h3>
+<p style={{ color: '#4b5563', marginBottom: '20px' }}>
+  I spent this past week collecting every recommendation from that Reddit thread and others, keeping all the parent quotes and insider tips as authentic as possible. No editing or sugar-coating - just real wisdom from parents who've actually been there with their kids.
+</p>
+
+<div style={{ backgroundColor: '#dbeafe', padding: '20px', borderRadius: '8px', marginBottom: '25px' }}>
+  <h4 style={{ color: '#1e40af', marginBottom: '10px' }}>🎯 My Vision</h4>
+  <p style={{ color: '#1e40af', marginBottom: '10px' }}>
+    I want to build a community where parents discover, share, and plan adventures - big or small - with their kids. Whether you're having an SOS "we need to get out of the house NOW" moment or planning ahead with other parent friends, I want this to be in your corner.
+  </p>
+</div>
+
+<h3 style={{ color: '#6366f1', fontSize: '1.3rem', marginBottom: '15px' }}>✨ What We Have Right Now</h3>
+<div style={{ color: '#4b5563', marginBottom: '20px' }}>
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '10px' }}>
+    <div>• 87 locations recommended by actual parents</div>
+    <div>• Distance sorting from your location</div>
+    <div>• Age-appropriate filters</div>
+    <div>• Authentic parent quotes and tips</div>
+    <div>• Bookmark locations for later</div>
+    <div>• Get directions via Google Maps</div>
+    <div>• Share activities with other parents</div>
+  </div>
+</div>
+
+<div style={{ backgroundColor: '#ecfdf5', padding: '20px', borderRadius: '8px' }}>
+  <h4 style={{ color: '#065f46', marginBottom: '10px' }}>🤝 This Is Just the Beginning</h4>
+  <p style={{ color: '#065f46', marginBottom: '10px' }}>
+    This isn't visually designed yet - I'm focused on testing whether this is actually valuable for parents like us. Your feedback will determine what this becomes and what features matter most.
+  </p>
+  <p style={{ color: '#065f46' }}>
+    I'm looking for honest thoughts on what's missing, what could be removed, and everything in between. Is this how you think about planning activities with your kids?
+  </p>
+</div>
+
+<div style={{ backgroundColor: '#fff', padding: '30px', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', textAlign: 'center' }}>
+  <p style={{ color: '#6b7280', marginBottom: '15px', fontSize: '1.1rem' }}>I'd love your feedback on what's working and what's not!</p>
+  <p style={{ color: '#6b7280', marginBottom: '20px', fontSize: '0.9rem' }}>Found a hidden gem I missed? Have ideas for features? Just want to share your thoughts?</p>
+  <a 
+    href="mailto:feedback@tottrot.com" 
+    style={{
+      display: 'inline-block',
+      padding: '12px 24px',
+      backgroundColor: '#6366f1',
+      color: 'white',
+      textDecoration: 'none',
+      borderRadius: '8px',
+      fontSize: '16px',
+      fontWeight: 'bold'
+    }}
+  >
+    💌 Send Feedback
+  </a>
+</div>
           
           <div style={{ backgroundColor: '#fff', padding: '30px', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', textAlign: 'center' }}>
             <p style={{ color: '#6b7280', marginBottom: '20px', fontSize: '1.1rem' }}>Found a hidden gem I missed? I'd love to add it!</p>

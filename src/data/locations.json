@@ -2,143 +2,496 @@
   "locations": [
     {
       "id": 1,
-      "name": "Adventure Playground",
-      "city": "Berkeley",
-      "region": "East Bay",
-      "address": "160 University Ave, Berkeley, CA",
-      "cost": "Free",
+      "name": "Children's Discovery Museum",
+      "city": "San Jose",
+      "region": "South Bay",
+      "address": "180 Woz Way, San Jose, CA 95110",
+      "cost": "$18",
       "duration": "2-3hrs",
-      "description": "Kids build forts with real tools in America's wildest playground",
-      "longDescription": "One of only 4 adventure playgrounds in the US where kids 7+ build forts with real hammers, saws, and paint, plus a thrilling zip line. Expect dirt, minor scrapes, and major confidence-building in this supervised experience.",
-      "ageRanges": ["5-7", "8-12"],
-      "interests": ["active", "creative", "outdoor"],
-      "coordinates": [37.8715, -122.2730],
+      "description": "Hands-on exhibits where kids dig for fossils, blow giant bubbles, and create art in the distinctive purple building",
+      "longDescription": "One of the largest children's museums in the nation with 150+ interactive exhibits spanning science, humanities, and arts. Kids can excavate woolly mammoth fossils, experiment in the Amazing AirMaze, and get hands-on with water play in a 52,000 square foot space designed by Mexican architect Ricardo Legoretta.",
+      "ageRanges": ["2-4", "5-7", "8-12"],
+      "interests": ["science", "creative", "indoor"],
+      "coordinates": [37.3382, -121.8863],
       "parentQuotes": [
-        "My kids adored that place and despite my worries, never got injured",
-        "It builds independence like nowhere else - they come home so proud",
-        "Transformative but not for risk-averse families"
+        "just as fantastic a visit. Hardly a hidden gem but somewhat under-appreciated",
+        "There's a lot to see and explore, but my kids especially loved the firetruck, ambulance and water play",
+        "My son enjoyed the mammoth area but by far enjoyed the outside garden and play areas and water area the most"
       ],
       "practicalDetails": {
-        "hours": "Wed-Sun 10am-5pm",
-        "parking": "Free street parking",
-        "requirements": "Closed-toe shoes required",
-        "tips": ["Ages 7+ for power tools", "Expect permanent stains", "$10 drop-off available", "No food allowed inside"]
+        "hours": "Tue-Sun 9:30am-4:30pm, closed Mondays",
+        "parking": "$5 all-day parking across the street",
+        "requirements": "None",
+        "tips": ["Bring extra clothes for water play", "Under-appreciated compared to Sausalito location", "Weekend parking can be challenging", "Adobe Youth Voices program on Saturdays"]
       },
-      "seasonalInfo": ["Closed in heavy rain", "Busiest: Sat afternoons", "Quietest: Wed mornings", "Summer: arrive early"],
-      "recentUpdates": ["NEW: 24-foot whale climbing structure (7/25)", "Tool library expanded", "Winter hours start Oct 1"],
-      "nearbyActivities": ["berkeley-marina", "cesar-chavez-park", "takara-sake"]
+      "seasonalInfo": ["Indoor activity - weather independent", "Less crowded on weekday afternoons", "Tot Time Tuesdays-Saturdays 11am"],
+      "recentUpdates": ["Incredible India art studio for under-4s", "S.T.E.A.M studio programs at 2pm", "Recent cleanliness concerns noted by parents"],
+      "nearbyActivities": ["san-jose-museum-art", "tech-interactive", "guadalupe-river-park"],
+      "insiderTip": "Under-appreciated compared to Sausalito location - fewer crowds but similar quality exhibits"
     },
     {
       "id": 2,
-      "name": "Children's Creativity Museum",
-      "city": "San Francisco",
-      "region": "San Francisco",
-      "address": "221 4th St, San Francisco, CA",
-      "cost": "$20",
+      "name": "Lawrence Hall of Science",
+      "city": "Berkeley",
+      "region": "East Bay",
+      "address": "1 Centennial Dr, Berkeley, CA 94720",
+      "cost": "$25",
       "duration": "2-3hrs",
-      "description": "Kids create stop-motion movies and record music in hands-on studios",
-      "longDescription": "Interactive museum where kids 2-12 create stop-motion animations, record music in professional studios, and explore STEAM activities. The Animation Studio is consistently rated as the top favorite by parents.",
+      "description": "UC Berkeley's science center with hands-on exhibits, live animals, and spectacular Bay Area views from the Berkeley Hills",
+      "longDescription": "UC Berkeley's public science center featuring hands-on STEM experiences, live animal encounters, planetarium shows, and the iconic Pheena whale sculpture. The hilltop location offers breathtaking views of the San Francisco Bay while kids explore everything from gecko feet to DNA climbing structures.",
       "ageRanges": ["2-4", "5-7", "8-12"],
-      "interests": ["creative", "indoor", "technology"],
-      "coordinates": [37.7749, -122.4194],
+      "interests": ["science", "nature", "outdoor"],
+      "coordinates": [37.8793, -122.2471],
       "parentQuotes": [
-        "The Animation Studio had my 6-year-old completely absorbed for 2 hours",
-        "Perfect rainy day activity - everything is indoors",
-        "My daughter still talks about the music studio months later"
+        "when kiddo's a little older",
+        "all of the things - high praise from my 3-year-old", 
+        "The view alone is worth the drive up there"
       ],
       "practicalDetails": {
-        "hours": "Tue-Sun 10am-4pm",
-        "parking": "Paid garage nearby",
-        "requirements": "None",
-        "tips": ["Free with library passes", "Animation Studio most popular", "Carousel next door", "Best for ages 5-8"]
+        "hours": "Daily 10am-5pm, Animal Discovery Zone 11am-4pm",
+        "parking": "Paid parking in museum lot",
+        "requirements": "No AC in building - some areas may close on hot days",
+        "tips": ["Free for UC Berkeley students and staff", "Take Bus #65 from downtown Berkeley", "Membership gets 50% off Chabot Space Center", "Outdoor Nature Lab perfect for climbing"]
       },
-      "seasonalInfo": ["Indoor activity - weather independent", "Less crowded weekday mornings"],
-      "recentUpdates": ["25th anniversary celebrations in 2025", "New STEAM workshop added"],
-      "nearbyActivities": ["yerba-buena-gardens", "metreon", "sf-moma"]
+      "seasonalInfo": ["No air conditioning - may be hot in summer", "Outdoor areas always available", "Special events on weekends"],
+      "recentUpdates": ["Playtopia/Juegolandia for ages 2-6", "Virtually Human AI exhibit", "Making Music mathematical exhibit"],
+      "nearbyActivities": ["uc-botanical-garden", "berkeley-rose-garden", "tilden-regional-park"],
+      "insiderTip": "Perfect for older kids - the outdoor areas and climbing structures are incredible"
     },
     {
       "id": 3,
-      "name": "Tilden Little Farm",
+      "name": "Adventure Playground",
       "city": "Berkeley",
-      "region": "East Bay", 
-      "address": "600 Canon Dr, Berkeley, CA",
+      "region": "East Bay",
+      "address": "160 University Ave, Berkeley, CA 94710",
       "cost": "Free",
-      "duration": "1-2hrs",
-      "description": "Working farm with cows, goats, and chickens in the Berkeley hills",
-      "longDescription": "FREE 70-year-old working farm in Berkeley hills with cows, goats, chickens and seasonal baby animals. Perfect for ages 6 months to 8 years, though animal feeding is temporarily suspended for safety.",
-      "ageRanges": ["0-2", "2-4", "5-7"],
-      "interests": ["animals", "outdoor", "nature"],
-      "coordinates": [37.8715, -122.2730],
+      "duration": "2-3hrs",
+      "description": "Unique playground where kids build forts with real hammers and saws, featuring a zip line and total creative freedom",
+      "longDescription": "One of only 4 adventure playgrounds in the US where children 5+ can use real tools to build, paint, and create. This supervised 'junk playground' encourages risk-taking and independence with hammer-accessible tool library, zip line, and completely child-led construction projects.",
+      "ageRanges": ["5-7", "8-12"],
+      "interests": ["creative", "active", "outdoor"],
+      "coordinates": [37.8715, -122.3102],
       "parentQuotes": [
-        "The free admission is amazing for families on a budget",
-        "My toddler loves seeing the baby animals in spring",
-        "Arrive early - parking fills up fast on weekends"
+        "My kids adored that place and despite my worries, never got injured",
+        "Age 5+ for tools, zip line 6+. Called 'Tetanus Park'",
+        "Kids can hammer, saw, paint for hours. Take out hammer like library book"
       ],
       "practicalDetails": {
-        "hours": "Daily 8:30am-5pm",
-        "parking": "Free but limited",
-        "requirements": "None",
-        "tips": ["Best early morning (8:30-9am)", "No animal feeding currently", "Combine with carousel", "Stroller accessible"]
+        "hours": "Wed-Sun varies by season",
+        "parking": "Free street parking nearby",
+        "requirements": "Closed-toe shoes required, ages 5+ for tools",
+        "tips": ["Expect permanent stains on clothes", "$10 drop-off available", "Tools checked out like library books", "Called 'Tetanus Park' by locals"]
       },
-      "seasonalInfo": ["Baby animals in spring", "Can be muddy in winter", "Best weather: spring and fall"],
-      "recentUpdates": ["Animal feeding suspended (avian flu precautions)", "New fence repairs completed"],
-      "nearbyActivities": ["tilden-carousel", "tilden-steam-train", "tilden-nature-center"]
+      "seasonalInfo": ["Closed in heavy rain", "Winter hours shorter", "Summer camps available"],
+      "recentUpdates": ["New 24-foot whale climbing structure built summer 2025", "Girls Garage collaboration projects", "Tool library expansion"],
+      "nearbyActivities": ["berkeley-marina", "cesar-chavez-park", "takara-sake-tasting"],
+      "insiderTip": "Ages 7+ for power tools - this builds independence like nowhere else but not for risk-averse families"
     },
     {
       "id": 4,
-      "name": "Bay Area Discovery Museum",
-      "city": "Sausalito",
-      "region": "North Bay",
-      "address": "557 McReynolds Rd, Sausalito, CA",
-      "cost": "$20",
-      "duration": "3-4hrs",
-      "description": "STEM exhibits with Golden Gate Bridge views and outdoor adventure areas",
-      "longDescription": "Spectacular 7.5-acre STEM-focused children's museum at Fort Baker with Golden Gate Bridge views, featuring indoor/outdoor exhibits including the beloved Lookout Cove adventure area and innovative Try It Studio.",
-      "ageRanges": ["2-4", "5-7", "8-12"],
-      "interests": ["science", "outdoor", "creative", "technology"],
-      "coordinates": [37.8315, -122.4784],
-      "parentQuotes": [
-        "Worth the drive just for the incredible location and views",
-        "The Lookout Cove outdoor area is pure magic for kids",
-        "Recent renovation made it feel like a completely new museum"
-      ],
-      "practicalDetails": {
-        "hours": "Tue-Sun 9am-5pm",
-        "parking": "Free parking available",
-        "requirements": "None",
-        "tips": ["Free with library passes", "Membership pays off in 3 visits", "Bring layers - can be windy", "Perfect for ages 2-5"]
-      },
-      "seasonalInfo": ["Can be foggy in summer", "Outdoor areas weather dependent", "Less crowded on weekdays"],
-      "recentUpdates": ["New Painter's Place opened August 2025", "$20M renovation completed 2021", "Expanded Try It Studio"],
-      "nearbyActivities": ["sausalito-waterfront", "marine-mammal-center", "fort-baker"]
-    },
-    {
-      "id": 5,
-      "name": "Happy Hollow Park & Zoo",
-      "city": "San Jose",
-      "region": "South Bay",
-      "address": "748 Story Rd, San Jose, CA",
-      "cost": "$18",
-      "duration": "3-4hrs",
-      "description": "Small zoo with gentle rides and playgrounds designed for little ones",
-      "longDescription": "Beloved 60-year-old combo zoo and amusement park designed for ages 2-7, featuring 150 animals, gentle rides including the newly reimagined Danny the Dragon train, puppet shows, and multiple playgrounds.",
+      "name": "CuriOdyssey",
+      "city": "San Mateo",
+      "region": "Peninsula", 
+      "address": "401 El Camino Real, San Mateo, CA 94401",
+      "cost": "$19",
+      "duration": "2-3hrs",
+      "description": "Hands-on science museum and zoo featuring interactive exhibits and rescued wildlife in a beautiful bayfront setting",
+      "longDescription": "Science museum and zoo featuring rescued wildlife including mountain lions, bobcats, and river otters alongside hands-on science exhibits. Located in Coyote Point Park with stunning bay views, combining animal encounters with interactive learning experiences designed for young children.",
       "ageRanges": ["2-4", "5-7"],
-      "interests": ["animals", "rides", "outdoor"],
-      "coordinates": [37.3382, -122.0922],
+      "interests": ["science", "animals", "outdoor"],
+      "coordinates": [37.5892, -122.3139],
       "parentQuotes": [
-        "The all-inclusive admission is such great value",
-        "Danny the Dragon ride is always the highlight",
-        "Perfect size for young kids - not overwhelming like bigger parks"
+        "perfect for this age. Kids can run around and don't have to worry",
+        "Perfect for 2.5-3yo. Combine with Magic Mountain + beach",
+        "$6 vehicle entry fee for Coyote Point. Beautiful bayfront location"
       ],
       "practicalDetails": {
         "hours": "Daily 10am-5pm",
-        "parking": "Free parking",
+        "parking": "$6 vehicle entry fee for Coyote Point Park",
         "requirements": "None",
-        "tips": ["All rides included in admission", "Bring snacks to save money", "3-4 hour visits typical", "Best for ages 2-7"]
+        "tips": ["Combine with Magic Mountain playground", "Beautiful bayfront location", "Perfect for 2.5-3 year olds", "Beach access nearby"]
       },
-      "seasonalInfo": ["Open year-round", "Some outdoor exhibits close in rain", "Summer can be very hot"],
-      "recentUpdates": ["Danny the Dragon ride completely reimagined 2024", "New playground equipment added", "Expanded animal habitats"],
-      "nearbyActivities": ["history-park", "alum-rock-park", "raging-waters"]
+      "seasonalInfo": ["Open year-round", "Beautiful in all weather", "Beach activities in summer"],
+      "recentUpdates": ["New wildlife rehabilitation programs", "Enhanced interactive exhibits", "Expanded outdoor animal habitats"],
+      "nearbyActivities": ["magic-mountain-playground", "coyote-point-beach", "san-mateo-hillsdale"],
+      "insiderTip": "Perfect for 2.5-3yo - combine with Magic Mountain playground and beach for full day"
+    },
+    {
+      "id": 5,
+      "name": "22nd Street Caltrain Adventure",
+      "city": "San Francisco",
+      "region": "Transportation",
+      "address": "22nd St Caltrain Station, SF",
+      "cost": "$8",
+      "duration": "half-day",
+      "description": "Take the train from 22nd Street to San Mateo for lunch - the train ride itself becomes the main adventure",
+      "longDescription": "Unique family adventure using public transit as entertainment. Drive to 22nd Street Caltrain station, take the train south to San Mateo or Burlingame for lunch and playground time. The journey becomes the destination as kids experience train travel while parents enjoy stress-free transportation.",
+      "ageRanges": ["2-4", "5-7", "8-12"],
+      "interests": ["transportation", "outdoor", "social"],
+      "coordinates": [37.7571, -122.3943],
+      "parentQuotes": [
+        "drive to 22nd Caltrain stop, take train to San Mateo for lunch. Train ride alone is total adventure and sun comes out down there!",
+        "Sun comes out in San Mateo! Train ride is main attraction",
+        "Alt: Burlingame stop - Backhaus restaurant + huge playground"
+      ],
+      "practicalDetails": {
+        "hours": "Caltrain schedule varies",
+        "parking": "Limited street parking near station",
+        "requirements": "Valid Caltrain tickets",
+        "tips": ["Sun usually comes out in San Mateo", "Burlingame stop has Backhaus restaurant", "22nd Street has playground nearby", "Great for naptime on return trip"]
+      },
+      "seasonalInfo": ["Year-round activity", "Better weather south of SF", "Weekend schedules different"],
+      "recentUpdates": ["Enhanced train safety protocols", "New family-friendly cars", "Updated schedule information"],
+      "nearbyActivities": ["22nd-street-park", "dogpatch", "potrero-hill"],
+      "insiderTip": "Sun comes out in San Mateo - train ride is the main attraction, perfect for mixed ages"
+    },
+    {
+      "id": 6,
+      "name": "Hayward Japanese Gardens",
+      "city": "Hayward",
+      "region": "East Bay",
+      "address": "22373 N 3rd St, Hayward, CA 94541",
+      "cost": "Free",
+      "duration": "30min-1hr",
+      "description": "Peaceful Japanese garden perfect for short visits to see koi fish and turtles in tranquil pond settings",
+      "longDescription": "Small but beautiful Japanese garden featuring traditional landscaping, stone bridges, and peaceful water features with koi fish and turtles. Designed for contemplative strolls, this hidden gem offers a quick cultural and nature experience perfect for young children's attention spans.",
+      "ageRanges": ["0-2", "2-4", "5-7"],
+      "interests": ["nature", "outdoor", "cultural"],
+      "coordinates": [37.6688, -122.0527],
+      "parentQuotes": [
+        "for a quick stroll and seeing the fish and turtles in the pond",
+        "Quick visit, perfect for short attention spans",
+        "Some parents find paths too narrow for strollers"
+      ],
+      "practicalDetails": {
+        "hours": "Daily dawn to dusk",
+        "parking": "Free street parking",
+        "requirements": "None",
+        "tips": ["Quick 30-minute visit ideal", "Paths may be narrow for strollers", "Great for teaching about different cultures", "Peaceful atmosphere"]
+      },
+      "seasonalInfo": ["Beautiful in spring with flowers", "Peaceful year-round", "Some seasonal garden changes"],
+      "recentUpdates": ["Garden maintenance improvements", "New interpretive signage", "Enhanced accessibility"],
+      "nearbyActivities": ["hayward-shoreline", "kennedy-park", "southland-mall"],
+      "insiderTip": "Perfect for short attention spans - quick stroll to see fish and turtles"
+    },
+    {
+      "id": 7,
+      "name": "Happy Hollow Park & Zoo",
+      "city": "San Jose",
+      "region": "South Bay",
+      "address": "748 Story Rd, San Jose, CA 95112",
+      "cost": "$18",
+      "duration": "half-day",
+      "description": "Small zoo with gentle rides perfect for toddlers, featuring lemurs, meerkats and the beloved Danny the Dragon train",
+      "longDescription": "Beloved combination zoo and amusement park specifically designed for ages 2-7. Features 150+ animals including lemurs and meerkats, gentle rides, puppet castle, and multiple playgrounds. The newly reimagined Danny the Dragon train ride remains the consistent favorite attraction.",
+      "ageRanges": ["2-4", "5-7"],
+      "interests": ["animals", "rides", "outdoor"],
+      "coordinates": [37.3247, -121.8617],
+      "parentQuotes": [
+        "literal favorite place as a kid. mysterious broke down attractions and oddities were enthralling",
+        "Perfect for toddler to 8yr range. Has mysterious unfinished charm",
+        "Giant playground with background music. Lost charm after renovation"
+      ],
+      "practicalDetails": {
+        "hours": "Daily 10am-5pm (hours vary seasonally)",
+        "parking": "Free parking available",
+        "requirements": "None",
+        "tips": ["All rides included in admission", "Perfect size for young children", "Danny the Dragon most popular", "Puppet shows available"]
+      },
+      "seasonalInfo": ["Open year-round", "Some outdoor exhibits may close in rain", "Special holiday events"],
+      "recentUpdates": ["Danny the Dragon train completely reimagined in 2024", "New playground equipment added", "Expanded animal habitats"],
+      "nearbyActivities": ["kelley-park", "history-park-san-jose", "raging-waters"],
+      "insiderTip": "Perfect for toddler to 8yr range - has mysterious unfinished charm that kids love"
+    },
+    {
+      "id": 8,
+      "name": "Ardenwood Farms",
+      "city": "Fremont",
+      "region": "East Bay",
+      "address": "34600 Ardenwood Blvd, Fremont, CA 94555",
+      "cost": "$5",
+      "duration": "half-day",
+      "description": "Historic working farm with Victorian-era buildings, farm animals, and vintage train rides through the property",
+      "longDescription": "Living history farm and historic site featuring a Victorian-era farmhouse, heritage breeds of farm animals, blacksmith shop, and narrow-gauge railroad. Visitors can experience 1870s farm life with hands-on activities, seasonal farming demonstrations, and special events throughout the year.",
+      "ageRanges": ["2-4", "5-7", "8-12"],
+      "interests": ["animals", "nature", "historical"],
+      "coordinates": [37.5577, -122.0598],
+      "parentQuotes": [
+        "so much for kiddos to do and experience there!",
+        "Great fall events",
+        "Pioneer days recreation with trains and working blacksmith shop"
+      ],
+      "practicalDetails": {
+        "hours": "Apr-Nov Thu-Sun, hours vary by season",
+        "parking": "Free parking",
+        "requirements": "Seasonal operation",
+        "tips": ["Great fall harvest events", "Train rides on weekends", "Blacksmith demonstrations", "Pack snacks for long visits"]
+      },
+      "seasonalInfo": ["Closed winter months", "Amazing fall harvest events", "Spring baby animals", "Summer camps available"],
+      "recentUpdates": ["Enhanced farm animal programs", "New heritage breed additions", "Improved visitor facilities"],
+      "nearbyActivities": ["central-park-fremont", "lake-elizabeth", "fremont-hub"],
+      "insiderTip": "Great fall events - pioneer days recreation with trains and working blacksmith shop"
+    },
+    {
+      "id": 9,
+      "name": "Tilden Steam Train",
+      "city": "Berkeley",
+      "region": "East Bay",
+      "address": "Tilden Regional Park, Berkeley, CA",
+      "cost": "$3",
+      "duration": "30min-1hr",
+      "description": "Miniature steam train ride through redwood groves in Tilden Park, operating weekends year-round",
+      "longDescription": "Narrow-gauge miniature railroad offering scenic rides through the redwood and eucalyptus groves of Tilden Regional Park. The 12-inch gauge trains operate on a mile-long track, providing a gentle adventure through beautiful forested terrain perfect for all ages.",
+      "ageRanges": ["0-2", "2-4", "5-7", "8-12"],
+      "interests": ["transportation", "nature", "outdoor"],
+      "coordinates": [37.8944, -122.2472],
+      "parentQuotes": [
+        "always a winner. ride through the redwoods!",
+        "Combine with Little Farm and Merry-go-round for full day",
+        "Weekend operation. Part of Tilden complex"
+      ],
+      "practicalDetails": {
+        "hours": "Weekends and holidays only",
+        "parking": "Free parking at Tilden",
+        "requirements": "Cash only for tickets",
+        "tips": ["Combine with Little Farm visit", "Merry-go-round nearby", "Part of full Tilden day", "Runs every 20 minutes"]
+      },
+      "seasonalInfo": ["Weekends year-round", "Holiday operations", "Weather dependent"],
+      "recentUpdates": ["Track maintenance completed", "New safety protocols", "Enhanced steam engines"],
+      "nearbyActivities": ["tilden-little-farm", "tilden-merry-go-round", "tilden-nature-area"],
+      "insiderTip": "Always a winner - combine with Little Farm and Merry-go-round for full Tilden day"
+    },
+    {
+      "id": 10,
+      "name": "Tilden Little Farm",
+      "city": "Berkeley",
+      "region": "East Bay",
+      "address": "Tilden Regional Park, Berkeley, CA",
+      "cost": "Free",
+      "duration": "1-2hrs",
+      "description": "Free farm with cows, pigs, goats and chickens where kids can see farm animals up close in a natural setting",
+      "longDescription": "Working demonstration farm featuring heritage breed farm animals including Jersey cows, pigs, goats, sheep, and chickens. Located in beautiful Tilden Regional Park, this free attraction offers children hands-on exposure to farm life with educational programs and seasonal activities.",
+      "ageRanges": ["0-2", "2-4", "5-7"],
+      "interests": ["animals", "nature", "outdoor"],
+      "coordinates": [37.8944, -122.2444],
+      "parentQuotes": [
+        "sweet and fun for Littles to bigger Littles",
+        "Recently banned feeding animals. Very small - 30min walkthrough",
+        "Always a drive to get there. Iceberg and celery only (if feeding allowed)"
+      ],
+      "practicalDetails": {
+        "hours": "Daily 8:30am-5pm",
+        "parking": "Free but limited parking",
+        "requirements": "No animal feeding currently allowed",
+        "tips": ["Arrive early for parking", "30-minute visit typical", "Animal feeding suspended", "Combine with other Tilden activities"]
+      },
+      "seasonalInfo": ["Baby animals in spring", "Open year-round", "Can be muddy in winter"],
+      "recentUpdates": ["Animal feeding temporarily suspended (avian flu precautions)", "New fence installations", "Enhanced animal care protocols"],
+      "nearbyActivities": ["tilden-steam-train", "tilden-merry-go-round", "tilden-nature-area"],
+      "insiderTip": "Recently banned feeding animals but still sweet for littles - very small, 30min walkthrough"
+    },
+    {
+      "id": 11,
+      "name": "Tilden Merry-go-Round",
+      "city": "Berkeley", 
+      "region": "East Bay",
+      "address": "Tilden Regional Park, Berkeley, CA",
+      "cost": "$2",
+      "duration": "15-30min",
+      "description": "Historic carousel in Tilden Park featuring hand-carved horses and classic carnival music",
+      "longDescription": "Vintage 1911 Herschell-Spillman carousel featuring beautifully carved horses and classic carnival atmosphere. Located in the heart of Tilden Regional Park, this historic merry-go-round has been delighting Bay Area families for generations with its timeless charm and gentle rides.",
+      "ageRanges": ["0-2", "2-4", "5-7"],
+      "interests": ["rides", "historical", "outdoor"],
+      "coordinates": [37.8944, -122.2461],
+      "parentQuotes": [
+        "Adding Tilden Merry Go Round",
+        "It spins so fast!",
+        "Parent misses the pink brick popcorn"
+      ],
+      "practicalDetails": {
+        "hours": "Weekends and holidays",
+        "parking": "Free at Tilden",
+        "requirements": "Small children may need adult assistance",
+        "tips": ["Spins quite fast", "Classic carnival atmosphere", "Historic value", "Quick activity"]
+      },
+      "seasonalInfo": ["Weekend operation", "Holiday schedules", "Weather dependent"],
+      "recentUpdates": ["Restoration maintenance", "Safety upgrades", "Vintage preservation"],
+      "nearbyActivities": ["tilden-little-farm", "tilden-steam-train", "tilden-botanic-garden"],
+      "insiderTip": "It spins so fast! Classic part of the Tilden experience"
+    },
+    {
+      "id": 12,
+      "name": "Multi-Transit Adventure Loop",
+      "city": "Bay Area",
+      "region": "Transportation",
+      "address": "Caltrain + Muni + Ferry",
+      "cost": "$25",
+      "duration": "full-day",
+      "description": "Epic public transit adventure using Caltrain, trolley, and ferry to create a full-day transportation experience",
+      "longDescription": "Ultimate Bay Area public transit adventure combining multiple transportation modes: Caltrain to SF, Muni trolley to the pier, lunch at Ferry Building, ferry to Alameda and Oakland. Perfect for transit-loving kids and provides almost every form of Bay Area public transportation in one epic journey.",
+      "ageRanges": ["2-4", "5-7", "8-12"],
+      "interests": ["transportation", "urban", "adventure"],
+      "coordinates": [37.7749, -122.4194],
+      "parentQuotes": [
+        "take Caltrain to SF, trolley to pier, lunch at ferry building, ferry to Alameda and Oakland",
+        "Perfect for mixed ages. Almost every transit method in one day",
+        "Great for naptime - only way newborn would sleep during day"
+      ],
+      "practicalDetails": {
+        "hours": "Transit schedule dependent",
+        "parking": "Park at origin Caltrain station",
+        "requirements": "Valid tickets for each transit system",
+        "tips": ["Plan around transit schedules", "Great for nap time", "Pack snacks", "Clipper card recommended"]
+      },
+      "seasonalInfo": ["Year-round activity", "Ferry dependent on weather", "Holiday schedules vary"],
+      "recentUpdates": ["Enhanced safety protocols", "New ferry routes", "Updated transit apps"],
+      "nearbyActivities": ["ferry-building", "alameda-beach", "jack-london-square"],
+      "insiderTip": "Perfect for mixed ages - almost every transit method in one day, great for naptime"
+    },
+    {
+      "id": 13,
+      "name": "Oakland Zoo",
+      "city": "Oakland",
+      "region": "East Bay",
+      "address": "9777 Golf Links Rd, Oakland, CA 94605",
+      "cost": "$24",
+      "duration": "half-day",
+      "description": "Well-designed zoo with California-focused exhibits, gondola rides, and interactive animal experiences",
+      "longDescription": "Intimate zoo featuring California native animals and international species across themed areas including African Savanna and California Trail. The aerial gondola provides stunning views of the Bay Area while the zoo's conservation focus and interactive exhibits create educational experiences for all ages.",
+      "ageRanges": ["2-4", "5-7", "8-12"],
+      "interests": ["animals", "outdoor", "education"],
+      "coordinates": [37.7486, -122.1469],
+      "parentQuotes": [
+        "Not lesser known but great. Members means don't feel bad if bail after 20min",
+        "Membership recommended for flexibility",
+        "Never get tired of it"
+      ],
+      "practicalDetails": {
+        "hours": "Daily 10am-4pm (extended summer hours)",
+        "parking": "$12 parking fee",
+        "requirements": "None",
+        "tips": ["Membership offers flexibility", "Gondola rides extra", "California native animals featured", "Good for early exit if needed"]
+      },
+      "seasonalInfo": ["Year-round operation", "Summer extended hours", "Some animals less active in heat"],
+      "recentUpdates": ["California Trail expansion", "New conservation center", "Enhanced animal habitats"],
+      "nearbyActivities": ["chabot-space-center", "lake-chabot", "knowland-park"],
+      "insiderTip": "Membership recommended for flexibility - don't feel bad if you bail after 20 minutes"
+    },
+    {
+      "id": 14,
+      "name": "SF Zoo",
+      "city": "San Francisco",
+      "region": "San Francisco",
+      "address": "2701 Sloat Blvd, San Francisco, CA 94132",
+      "cost": "$25",
+      "duration": "half-day",
+      "description": "Ocean-adjacent zoo with penguins, lions, and large playground, plus historic carousel",
+      "longDescription": "100-acre zoo located near Ocean Beach featuring African lions, Magellanic penguins, and diverse animal collections. The spacious grounds include multiple playgrounds, a historic carousel, and the Little Puffer steam train, making it ideal for families who want to combine animal viewing with playground time.",
+      "ageRanges": ["2-4", "5-7", "8-12"],
+      "interests": ["animals", "outdoor", "playground"],
+      "coordinates": [37.7331, -122.5030],
+      "parentQuotes": [
+        "take our 2.5yo all the time. Got membership. Safe for runners",
+        "Good for toddler runners, big playground",
+        "Zoo could use renovation but toddlers don't know"
+      ],
+      "practicalDetails": {
+        "hours": "Daily 10am-5pm",
+        "parking": "Free parking available",
+        "requirements": "None",
+        "tips": ["Good for active toddlers", "Large playground area", "Ocean breeze can be chilly", "Train and carousel cost extra"]
+      },
+      "seasonalInfo": ["Open year-round", "Foggy summers", "Dress in layers"],
+      "recentUpdates": ["Penguin habitat improvements", "New education center", "Enhanced accessibility"],
+      "nearbyActivities": ["ocean-beach", "golden-gate-park", "stern-grove"],
+      "insiderTip": "Good for toddler runners - safe for kids who need to move around, big playground area"
+    },
+    {
+      "id": 15,
+      "name": "Holly Park",
+      "city": "San Francisco",
+      "region": "San Francisco",
+      "address": "Highland Ave & Holly Park Cir, SF",
+      "cost": "Free",
+      "duration": "1-2hrs",
+      "description": "Neighborhood playground perfect for toddlers with safe, enclosed play areas and climbing structures",
+      "longDescription": "Well-designed neighborhood playground in Bernal Heights featuring age-appropriate equipment for toddlers and young children. The fully enclosed space allows parents to relax while children safely explore climbing structures, swings, and sandbox areas in a community-focused environment.",
+      "ageRanges": ["2-4", "5-7"],
+      "interests": ["playground", "outdoor", "active"],
+      "coordinates": [37.7387, -122.4197],
+      "parentQuotes": [
+        "perfect for this age. Kids can run around and don't have to worry",
+        "Perfect for 2.5yo. Part of parent's favs rotation",
+        "Safe for toddlers to run around"
+      ],
+      "practicalDetails": {
+        "hours": "Daily dawn to dusk",
+        "parking": "Street parking available",
+        "requirements": "None",
+        "tips": ["Safe enclosed space", "Perfect for 2.5 year olds", "Part of many parents' rotation", "Good neighborhood playground"]
+      },
+      "seasonalInfo": ["Year-round use", "Can be foggy in summer", "Great neighborhood feel"],
+      "recentUpdates": ["Playground equipment updates", "Improved safety features", "Community garden adjacent"],
+      "nearbyActivities": ["bernal-heights-park", "precita-park", "mission-dolores-park"],
+      "insiderTip": "Perfect for 2.5yo - safe for toddlers to run around without worry"
+    },
+    {
+      "id": 16,
+      "name": "22nd Street Park, Dogpatch",
+      "city": "San Francisco",
+      "region": "San Francisco",
+      "address": "22nd St, San Francisco, CA",
+      "cost": "Free",
+      "duration": "1-2hrs",
+      "description": "Small neighborhood park in Dogpatch with modern playground equipment and bay views",
+      "longDescription": "Contemporary playground in the historic Dogpatch neighborhood featuring modern equipment designed for young children. The park offers stunning bay views and is part of the area's ongoing revitalization, providing a peaceful play space away from busy tourist areas.",
+      "ageRanges": ["2-4", "5-7"],
+      "interests": ["playground", "outdoor", "neighborhood"],
+      "coordinates": [37.7571, -122.3885],
+      "parentQuotes": [
+        "the little park on 22nd in the Dogpatch because perfect for this age",
+        "Local favorite, safe for toddlers",
+        "Near Caltrain station for combo trips"
+      ],
+      "practicalDetails": {
+        "hours": "Daily dawn to dusk",
+        "parking": "Street parking",
+        "requirements": "None",
+        "tips": ["Perfect for toddler age", "Local neighborhood favorite", "Near Caltrain station", "Less crowded than tourist areas"]
+      },
+      "seasonalInfo": ["Year-round use", "Protected from wind", "Sunny microclimate"],
+      "recentUpdates": ["Neighborhood development ongoing", "New equipment installed", "Improved maintenance"],
+      "nearbyActivities": ["22nd-street-caltrain", "dogpatch-cafes", "crane-cove-park"],
+      "insiderTip": "Local favorite perfect for this age - near Caltrain station for combo trips"
+    },
+    {
+      "id": 17,
+      "name": "East Bay Regional Parks",
+      "city": "East Bay",
+      "region": "East Bay",
+      "address": "Multiple locations",
+      "cost": "$5",
+      "duration": "variable",
+      "description": "65 parks across Alameda and Contra Costa counties with hiking trails, lakes, and diverse outdoor recreation",
+      "longDescription": "Extensive park system covering 125,000 acres with 65 parks offering hiking, swimming, boating, and wildlife viewing. From lake recreation at Lake Chabot to redwood hiking at Redwood Regional Park, the system provides diverse outdoor experiences across the East Bay hills and shoreline.",
+      "ageRanges": ["2-4", "5-7", "8-12"],
+      "interests": ["nature", "hiking", "outdoor"],
+      "coordinates": [37.8044, -122.2712],
+      "parentQuotes": [
+        "has a metric ton of locations",
+        "Roberts Park play structure is amazing",
+        "Pool is magical when it's 'raining' off redwood trees"
+      ],
+      "practicalDetails": {
+        "hours": "Vary by park, generally dawn to dusk",
+        "parking": "$5 day use fee at most parks",
+        "requirements": "Some trails require hiking experience",
+        "tips": ["Roberts Park has amazing play structure", "Redwood groves create 'rain'", "Many locations to choose from", "Swimming available at some lakes"]
+      },
+      "seasonalInfo": ["Year-round operation", "Some parks close in extreme fire conditions", "Spring wildflowers spectacular"],
+      "recentUpdates": ["Enhanced trail maintenance", "New accessibility features", "Improved park facilities"],
+      "nearbyActivities": ["varies-by-location", "hiking-trails", "lake-recreation"],
+      "insiderTip": "Roberts Park play structure is amazing - pool is magical when it's 'raining' off redwood trees"
     }
   ],
   "filterOptions": {
@@ -162,19 +515,26 @@
       "active": "Active & Outdoor", 
       "creative": "Arts & Creativity",
       "science": "Science & Learning",
-      "water": "Water Play",
+      "playground": "Playgrounds",
       "indoor": "Indoor Play",
       "rides": "Rides & Attractions",
-      "technology": "Tech & Innovation",
+      "transportation": "Transportation",
       "nature": "Nature & Gardens",
-      "outdoor": "Outdoor Adventures"
+      "outdoor": "Outdoor Adventures",
+      "historical": "Historical",
+      "cultural": "Cultural",
+      "urban": "Urban",
+      "neighborhood": "Neighborhood",
+      "hiking": "Hiking",
+      "education": "Educational"
     },
     "regions": {
       "San Francisco": "San Francisco",
       "East Bay": "East Bay", 
       "Peninsula": "Peninsula",
       "North Bay": "North Bay",
-      "South Bay": "South Bay"
+      "South Bay": "South Bay",
+      "Transportation": "Transportation"
     }
   }
 }

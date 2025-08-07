@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { ChevronLeft, Bookmark, Share2, Navigation, MapPin, Clock, Users, Star } from 'lucide-react';
 import locationsData from './data/locations.json';
 
 function App() {
@@ -6,14 +7,15 @@ function App() {
   const [userLocation, setUserLocation] = useState(null);
   const [filters, setFilters] = useState({
     duration: 'All Durations',
-    ageRange: 'All Ages',
-    interest: [], // Array for multiple selections
+    ageRange: 'All Ages', 
+    interest: [],
     location: 'All Regions'
   });
 
-  // New state for additional features
   const [favorites, setFavorites] = useState([]);
-  const [currentPage, setCurrentPage] = useState('home'); // 'home', 'about', or 'saved'
+  const [currentPage, setCurrentPage] = useState('home');
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [showResults, setShowResults] = useState(false);
 
   // Get user location for distance sorting
   useEffect(() => {
@@ -62,22 +64,18 @@ function App() {
     return R * c;
   };
 
-  // Handle filter changes including multi-select interests
+  // Handle filter changes
   const handleFilterChange = (filterType, value) => {
     if (filterType === 'interest') {
-      // Handle multi-select for interests
       setFilters(prev => {
         const currentInterests = prev.interest;
         let newInterests;
         
         if (value === 'All Interests') {
-          // If "All Interests" selected, clear all selections
           newInterests = [];
         } else if (currentInterests.includes(value)) {
-          // If already selected, remove it
           newInterests = currentInterests.filter(interest => interest !== value);
         } else {
-          // If not selected, add it
           newInterests = [...currentInterests, value];
         }
         
@@ -87,7 +85,6 @@ function App() {
         };
       });
     } else {
-      // Handle other filters normally
       setFilters(prev => ({
         ...prev,
         [filterType]: value
@@ -95,7 +92,7 @@ function App() {
     }
   };
 
-  // New action functions
+  // Action functions
   const toggleFavorite = (locationId) => {
     setFavorites(prev => 
       prev.includes(locationId) 
@@ -113,33 +110,101 @@ function App() {
     if (navigator.share) {
       navigator.share({
         title: location.name,
-        text: `Check out ${location.name} in ${location.city}! "${location.parentQuote}"`,
+        text: `Check out ${location.name} in ${location.city}! ${location.description}`,
         url: window.location.href
       });
     } else {
-      const shareText = `${location.name} - ${location.city}\n"${location.parentQuote}"\n${location.address}\n\nFound on Tot Trot: ${window.location.href}`;
+      const shareText = `${location.name} - ${location.city}\n${location.description}\n${location.address}\n\nFound on Tot Trot: ${window.location.href}`;
       navigator.clipboard.writeText(shareText);
       alert('Activity info copied to clipboard!');
     }
   };
 
-  // Filter and sort locations with multi-interest support
+  // Get available filter options (disable dead ends)
+  const getAvailableOptions = (filterType, currentFilters) => {
+    let testFilters = { ...currentFilters };
+    const availableOptions = [];
+
+    if (filterType === 'duration') {
+      Object.keys(locationsData.filterOptions.duration).forEach(option => {
+        testFilters.duration = option;
+        if (getFilteredCount(testFilters) > 0) {
+          availableOptions.push(option);
+        }
+      });
+    } else if (filterType === 'ageRange') {
+      Object.keys(locationsData.filterOptions.ageRanges).forEach(option => {
+        testFilters.ageRange = option;
+        if (getFilteredCount(testFilters) > 0) {
+          availableOptions.push(option);
+        }
+      });
+    } else if (filterType === 'location') {
+      Object.keys(locationsData.filterOptions.regions).forEach(option => {
+        testFilters.location = option;
+        if (getFilteredCount(testFilters) > 0) {
+          availableOptions.push(option);
+        }
+      });
+    } else if (filterType === 'interest') {
+      Object.keys(locationsData.filterOptions.interests).forEach(option => {
+        testFilters.interest = [...currentFilters.interest];
+        if (!testFilters.interest.includes(option)) {
+          testFilters.interest.push(option);
+          if (getFilteredCount(testFilters) > 0) {
+            availableOptions.push(option);
+          }
+        } else {
+          availableOptions.push(option); // Already selected
+        }
+      });
+    }
+
+    return availableOptions;
+  };
+
+  const getFilteredCount = (testFilters) => {
+    let filtered = locations;
+
+    if (testFilters.duration !== 'All Durations') {
+      filtered = filtered.filter(location => location.duration === testFilters.duration);
+    }
+
+    if (testFilters.ageRange !== 'All Ages') {
+      filtered = filtered.filter(location => 
+        location.ageRanges && location.ageRanges.includes(testFilters.ageRange)
+      );
+    }
+
+    if (testFilters.interest.length > 0) {
+      filtered = filtered.filter(location =>
+        location.interests && testFilters.interest.some(selectedInterest => 
+          location.interests.includes(selectedInterest)
+        )
+      );
+    }
+
+    if (testFilters.location !== 'All Regions') {
+      filtered = filtered.filter(location => location.region === testFilters.location);
+    }
+
+    return filtered.length;
+  };
+
+  // Filter and sort locations
   const filteredLocations = useMemo(() => {
     let filtered = locations;
 
-    // Duration filter
     if (filters.duration !== 'All Durations') {
       filtered = filtered.filter(location => location.duration === filters.duration);
     }
 
-    // Age filter
     if (filters.ageRange !== 'All Ages') {
       filtered = filtered.filter(location => 
         location.ageRanges && location.ageRanges.includes(filters.ageRange)
       );
     }
 
-    // Interest filter for multiple selections
     if (filters.interest.length > 0) {
       filtered = filtered.filter(location =>
         location.interests && filters.interest.some(selectedInterest => 
@@ -148,7 +213,6 @@ function App() {
       );
     }
 
-    // Location filter
     if (filters.location !== 'All Regions') {
       filtered = filtered.filter(location => location.region === filters.location);
     }
@@ -172,25 +236,9 @@ function App() {
       userLocation.lat, userLocation.lng,
       location.coordinates[0], location.coordinates[1]
     );
-    return `${distance.toFixed(1)} miles away`;
+    return `${distance.toFixed(1)} mi away`;
   };
 
-  const getAgeRangeDisplay = (ageRanges) => {
-    if (!ageRanges || ageRanges.length === 0) return '';
-    return ageRanges
-      .map(age => locationsData.filterOptions.ageRanges[age])
-      .join(', ');
-  };
-
-  const getDevelopmentDisplay = (milestones) => {
-    if (!milestones || milestones.length === 0) return '';
-    return milestones
-      .map(milestone => locationsData.filterOptions.developmentMilestones[milestone])
-      .slice(0, 2)
-      .join(', ');
-  };
-
-  // Clear all filters
   const clearAllFilters = () => {
     setFilters({
       duration: 'All Durations',
@@ -198,21 +246,23 @@ function App() {
       interest: [],
       location: 'All Regions'
     });
+    setShowResults(false);
   };
 
-  // Multi-select Interest Selector Component
+  // iOS-style Interest Selector Component
   const InterestSelector = () => {
     const [showDropdown, setShowDropdown] = useState(false);
+    const availableInterests = getAvailableOptions('interest', filters);
     
     const getDisplayText = () => {
       if (filters.interest.length === 0) {
-        return 'everything';
+        return 'activities';
       } else if (filters.interest.length === 1) {
         return locationsData.filterOptions.interests[filters.interest[0]].toLowerCase();
       } else if (filters.interest.length === 2) {
         return `${locationsData.filterOptions.interests[filters.interest[0]]} & ${locationsData.filterOptions.interests[filters.interest[1]]}`.toLowerCase();
       } else {
-        return `${filters.interest.length} interests`;
+        return `${filters.interest.length} activities`;
       }
     };
 
@@ -251,7 +301,7 @@ function App() {
             border: '2px solid #059669',
             borderRadius: '6px',
             zIndex: 1000,
-            maxHeight: '200px',
+            maxHeight: '250px',
             overflowY: 'auto',
             marginTop: '2px',
             boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
@@ -263,15 +313,19 @@ function App() {
                 setShowDropdown(false);
               }}
               style={{
-                padding: '8px 12px',
+                padding: '12px 16px',
                 cursor: 'pointer',
                 backgroundColor: filters.interest.length === 0 ? '#f0fdf4' : 'white',
                 borderBottom: '1px solid #e5e7eb',
                 fontWeight: filters.interest.length === 0 ? '600' : '400',
-                fontSize: '14px'
+                fontSize: '14px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center'
               }}
             >
-              ✨ Everything
+              All activities
+              {filters.interest.length === 0 && <span style={{ color: '#059669' }}>✓</span>}
             </div>
             
             {/* Individual interest options */}
@@ -280,8 +334,9 @@ function App() {
                 key={key}
                 onClick={() => handleFilterChange('interest', key)}
                 style={{
-                  padding: '8px 12px',
-                  cursor: 'pointer',
+                  padding: '12px 16px',
+                  cursor: availableInterests.includes(key) ? 'pointer' : 'not-allowed',
+                  opacity: availableInterests.includes(key) ? 1 : 0.5,
                   backgroundColor: filters.interest.includes(key) ? '#f0fdf4' : 'white',
                   borderBottom: '1px solid #e5e7eb',
                   display: 'flex',
@@ -312,8 +367,298 @@ function App() {
     if (filters.interest.length === 2) {
       return `for ${locationsData.filterOptions.interests[filters.interest[0]].toLowerCase()} & ${locationsData.filterOptions.interests[filters.interest[1]].toLowerCase()}`;
     }
-    return `for ${filters.interest.length} interests`;
+    return `for ${filters.interest.length} activities`;
   };
+
+  // Detail Page Component
+  const DetailPage = ({ location }) => {
+    const nearbyLocations = location.nearbyActivities?.map(id => 
+      locations.find(loc => loc.id.toString() === id.replace(/[^0-9]/g, ''))
+    ).filter(Boolean) || [];
+
+    return (
+      <div style={{ padding: '20px', fontFamily: '"Space Grotesk", sans-serif', backgroundColor: '#f9fafb', minHeight: '100vh' }}>
+        {/* Header */}
+        <div style={{ 
+          display: 'flex', 
+          justifyContent: 'space-between', 
+          alignItems: 'center', 
+          marginBottom: '20px',
+          maxWidth: '1000px',
+          margin: '0 auto'
+        }}>
+          <button
+            onClick={() => setSelectedLocation(null)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              background: 'none',
+              border: 'none',
+              fontSize: '18px',
+              cursor: 'pointer',
+              color: '#374151',
+              fontWeight: '600'
+            }}
+          >
+            <ChevronLeft size={20} />
+            {location.name}
+          </button>
+          
+          <button
+            onClick={() => toggleFavorite(location.id)}
+            style={{
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              color: favorites.includes(location.id) ? '#ef4444' : '#6b7280'
+            }}
+          >
+            <Bookmark size={24} fill={favorites.includes(location.id) ? 'currentColor' : 'none'} />
+          </button>
+        </div>
+
+        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+          {/* Hero Image Placeholder */}
+          <div style={{
+            height: '200px',
+            backgroundColor: '#e5e7eb',
+            borderRadius: '12px',
+            marginBottom: '20px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#6b7280'
+          }}>
+            [Hero Image]
+          </div>
+
+          {/* Description */}
+          <div style={{ backgroundColor: '#fff', padding: '24px', borderRadius: '12px', marginBottom: '20px' }}>
+            <p style={{ fontSize: '16px', lineHeight: '1.6', margin: '0 0 16px 0', color: '#374151' }}>
+              {location.longDescription}
+            </p>
+            
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', fontSize: '14px', color: '#6b7280' }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                <Clock size={16} />
+                {locationsData.filterOptions.duration[location.duration]}
+              </span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                💰 {location.cost}
+              </span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                <Users size={16} />
+                Ages {location.ageRanges?.join(', ')}
+              </span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                🌤️ {location.interests?.includes('indoor') ? 'Indoor' : 'Outdoor'}
+              </span>
+            </div>
+          </div>
+
+          {/* Parent Quotes */}
+          <div style={{ backgroundColor: '#fff', padding: '24px', borderRadius: '12px', marginBottom: '20px' }}>
+            <h3 style={{ color: '#374151', fontSize: '18px', marginBottom: '16px', fontWeight: '600' }}>
+              💬 Parents said
+            </h3>
+            
+            {location.parentQuotes?.map((quote, index) => (
+              <div key={index} style={{
+                backgroundColor: '#f3f0ff',
+                padding: '12px 16px',
+                borderRadius: '12px',
+                marginBottom: '12px',
+                position: 'relative',
+                border: '1px solid #e9d5ff'
+              }}>
+                <p style={{ margin: 0, fontStyle: 'italic', color: '#581c87' }}>
+                  "{quote}"
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* The Details */}
+          <div style={{ backgroundColor: '#fff', padding: '24px', borderRadius: '12px', marginBottom: '20px' }}>
+            <h3 style={{ color: '#374151', fontSize: '18px', marginBottom: '16px', fontWeight: '600' }}>
+              <MapPin size={18} style={{ display: 'inline', marginRight: '8px' }} />
+              The Details
+            </h3>
+            
+            <div style={{ space: '12px' }}>
+              <div style={{ marginBottom: '8px' }}>
+                <span style={{ fontWeight: '600', color: '#374151' }}>📍 </span>
+                {location.address}
+              </div>
+              <div style={{ marginBottom: '8px' }}>
+                <span style={{ fontWeight: '600', color: '#374151' }}>🅿️ </span>
+                {location.practicalDetails?.parking}
+              </div>
+              <div style={{ marginBottom: '8px' }}>
+                <span style={{ fontWeight: '600', color: '#374151' }}>🕐 </span>
+                {location.practicalDetails?.hours}
+              </div>
+              {location.practicalDetails?.requirements && (
+                <div style={{ marginBottom: '8px' }}>
+                  <span style={{ fontWeight: '600', color: '#374151' }}>👟 </span>
+                  {location.practicalDetails.requirements}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Best Time to Visit */}
+          {location.seasonalInfo && (
+            <div style={{ backgroundColor: '#fff', padding: '24px', borderRadius: '12px', marginBottom: '20px' }}>
+              <h3 style={{ color: '#374151', fontSize: '18px', marginBottom: '16px', fontWeight: '600' }}>
+                🌦️ Best Time to Visit
+              </h3>
+              
+              <ul style={{ margin: 0, paddingLeft: '20px' }}>
+                {location.seasonalInfo.map((info, index) => (
+                  <li key={index} style={{ marginBottom: '8px', color: '#374151' }}>{info}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Recent Updates */}
+          {location.recentUpdates && (
+            <div style={{ backgroundColor: '#fff', padding: '24px', borderRadius: '12px', marginBottom: '20px' }}>
+              <h3 style={{ color: '#374151', fontSize: '18px', marginBottom: '16px', fontWeight: '600' }}>
+                ⭐ Recent Updates
+              </h3>
+              
+              <ul style={{ margin: 0, paddingLeft: '20px' }}>
+                {location.recentUpdates.map((update, index) => (
+                  <li key={index} style={{ marginBottom: '8px', color: '#374151' }}>{update}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* What's Nearby */}
+          {nearbyLocations.length > 0 && (
+            <div style={{ backgroundColor: '#fff', padding: '24px', borderRadius: '12px', marginBottom: '20px' }}>
+              <h3 style={{ color: '#374151', fontSize: '18px', marginBottom: '16px', fontWeight: '600' }}>
+                📍 What's Nearby
+              </h3>
+              
+              {nearbyLocations.map((nearby, index) => (
+                <div 
+                  key={nearby.id}
+                  onClick={() => setSelectedLocation(nearby)}
+                  style={{
+                    padding: '12px',
+                    borderBottom: index < nearbyLocations.length - 1 ? '1px solid #e5e7eb' : 'none',
+                    cursor: 'pointer',
+                    borderRadius: '6px',
+                    marginBottom: '8px',
+                    transition: 'background-color 0.2s'
+                  }}
+                  onMouseEnter={(e) => e.target.style.backgroundColor = '#f9fafb'}
+                  onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+                >
+                  <div style={{ fontWeight: '600', color: '#374151' }}>▸ {nearby.name}</div>
+                  <div style={{ fontSize: '14px', color: '#6b7280' }}>{nearby.description}</div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Parent Tips */}
+          {location.practicalDetails?.tips && (
+            <div style={{ backgroundColor: '#fff', padding: '24px', borderRadius: '12px', marginBottom: '20px' }}>
+              <h3 style={{ color: '#374151', fontSize: '18px', marginBottom: '16px', fontWeight: '600' }}>
+                💡 Parent Tips
+              </h3>
+              
+              <ul style={{ margin: 0, paddingLeft: '20px' }}>
+                {location.practicalDetails.tips.map((tip, index) => (
+                  <li key={index} style={{ marginBottom: '8px', color: '#374151' }}>{tip}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Contact */}
+          <div style={{ backgroundColor: '#fff', padding: '24px', borderRadius: '12px', marginBottom: '20px' }}>
+            <div style={{ fontSize: '16px', color: '#374151', marginBottom: '12px' }}>
+              📞 Contact & Website
+            </div>
+            <button
+              style={{
+                color: '#6366f1',
+                background: 'none',
+                border: 'none',
+                fontSize: '16px',
+                cursor: 'pointer',
+                textDecoration: 'underline'
+              }}
+            >
+              🌐 Website
+            </button>
+          </div>
+
+          {/* Action Buttons */}
+          <div style={{ 
+            display: 'flex', 
+            gap: '12px',
+            marginBottom: '40px'
+          }}>
+            <button
+              onClick={() => shareActivity(location)}
+              style={{
+                flex: '1',
+                padding: '16px',
+                borderRadius: '8px',
+                border: 'none',
+                cursor: 'pointer',
+                fontSize: '16px',
+                fontWeight: '600',
+                backgroundColor: '#3b82f6',
+                color: 'white',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px'
+              }}
+            >
+              <Share2 size={18} />
+            </button>
+            
+            <button
+              onClick={() => getDirections(location.address)}
+              style={{
+                flex: '2',
+                padding: '16px',
+                borderRadius: '8px',
+                border: 'none',
+                cursor: 'pointer',
+                fontSize: '16px',
+                fontWeight: '600',
+                backgroundColor: '#10b981',
+                color: 'white',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px'
+              }}
+            >
+              <Navigation size={18} />
+              Get Directions
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Show detail page if location selected
+  if (selectedLocation) {
+    return <DetailPage location={selectedLocation} />;
+  }
 
   // Saved page
   if (currentPage === 'saved') {
@@ -323,35 +668,35 @@ function App() {
       <div style={{ padding: '20px', fontFamily: '"Space Grotesk", sans-serif', backgroundColor: '#f9fafb', minHeight: '100vh' }}>
         <header style={{ textAlign: 'center', marginBottom: '40px' }}>
           <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-            <div style={{ marginBottom: '20px' }}>
-              <h1 style={{ fontFamily: '"Fredoka One", cursive', color: '#6366f1', fontSize: '3rem', marginBottom: '8px', margin: '0' }}>Tot Trot</h1>
-              <p style={{ fontSize: '1.2rem', color: '#4b5563' }}>Your Saved Activities</p>
-              <p style={{ color: '#6b7280', fontSize: '1rem' }}>{favorites.length} locations saved for later</p>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
+              <button
+                onClick={() => setCurrentPage('home')}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  color: '#374151',
+                  marginRight: 'auto'
+                }}
+              >
+                <ChevronLeft size={24} />
+              </button>
+              
+              <div style={{ flex: 1, textAlign: 'center' }}>
+                <h1 style={{ fontFamily: '"Fredoka One", cursive', color: '#6366f1', fontSize: '3rem', margin: '0' }}>Tot Trot</h1>
+                <p style={{ fontSize: '1.2rem', color: '#4b5563', margin: '0' }}>Your Saved Activities</p>
+              </div>
+              
+              <div style={{ width: '24px' }}></div>
             </div>
-            <button
-              onClick={() => setCurrentPage('home')}
-              style={{
-                padding: '12px 24px',
-                backgroundColor: '#6b7280',
-                color: 'white',
-                border: 'none',
-                borderRadius: '8px',
-                fontSize: '14px',
-                cursor: 'pointer',
-                fontWeight: '600',
-                fontFamily: '"Space Grotesk", sans-serif'
-              }}
-            >
-              ← Back to Activities
-            </button>
           </div>
         </header>
 
         {savedLocations.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '60px 20px', maxWidth: '600px', margin: '0 auto' }}>
             <div style={{ fontSize: '4rem', marginBottom: '20px' }}>💔</div>
-            <h2 style={{ color: '#6b7280', fontSize: '1.5rem', marginBottom: '15px', fontFamily: '"Space Grotesk", sans-serif' }}>No saved activities yet!</h2>
-            <p style={{ color: '#6b7280', marginBottom: '30px', fontSize: '1.1rem', fontFamily: '"Space Grotesk", sans-serif' }}>
+            <h2 style={{ color: '#6b7280', fontSize: '1.5rem', marginBottom: '15px' }}>No saved activities yet!</h2>
+            <p style={{ color: '#6b7280', marginBottom: '30px', fontSize: '1.1rem' }}>
               Start exploring and save activities you want to try with your little one.
             </p>
             <button
@@ -364,8 +709,7 @@ function App() {
                 borderRadius: '8px',
                 fontSize: '16px',
                 cursor: 'pointer',
-                fontWeight: '600',
-                fontFamily: '"Space Grotesk", sans-serif'
+                fontWeight: '600'
               }}
             >
               Discover Activities
@@ -373,93 +717,73 @@ function App() {
           </div>
         ) : (
           <div style={{ display: 'grid', gap: '20px', maxWidth: '1000px', margin: '0 auto' }}>
-            {savedLocations.map((location, index) => (
+            {savedLocations.map((location) => (
               <div key={location.id} style={{ 
                 border: '2px solid #ef4444',
                 borderRadius: '12px', 
                 padding: '24px',
                 backgroundColor: '#fff',
                 boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-                fontFamily: '"Space Grotesk", sans-serif'
+                position: 'relative'
               }}>
-                {/* Header with address at top */}
-                <div style={{ marginBottom: '16px' }}>
+                {/* Bookmark in top right */}
+                <button
+                  onClick={() => toggleFavorite(location.id)}
+                  style={{
+                    position: 'absolute',
+                    top: '16px',
+                    right: '16px',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    color: '#ef4444'
+                  }}
+                >
+                  <Bookmark size={24} fill="currentColor" />
+                </button>
+
+                {/* Content */}
+                <div style={{ marginRight: '40px' }}>
                   <h3 style={{ color: '#1f2937', margin: 0, fontSize: '1.5rem', marginBottom: '8px', fontWeight: '600' }}>
                     {location.name}
                   </h3>
-                  <div style={{ fontSize: '14px', color: '#6b7280', marginBottom: '8px', fontWeight: '500' }}>
-                    📍 {location.address}
-                  </div>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', fontSize: '14px', color: '#6b7280', marginBottom: '8px' }}>
-                    <span>🏙️ {location.city}, {location.region}</span>
+                  
+                  <p style={{ color: '#6b7280', marginBottom: '16px', fontSize: '14px' }}>
+                    {location.description}
+                  </p>
+                  
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', fontSize: '14px', color: '#6b7280', marginBottom: '16px' }}>
+                    <span>{location.city}, {location.region}</span>
                     <span>💰 {location.cost}</span>
                     <span>⏰ {locationsData.filterOptions.duration[location.duration]}</span>
                   </div>
-                </div>
-                
-                {/* Parent Review */}
-                <div style={{ marginBottom: '16px' }}>
-                  <h4 style={{ color: '#1f2937', fontSize: '1.1rem', marginBottom: '8px', fontWeight: '600' }}>
-                    👨‍👩‍👧‍👦 Parent Review
-                  </h4>
-                  <blockquote style={{ 
-                    fontStyle: 'italic', 
-                    color: '#374151', 
-                    borderLeft: '4px solid #6366f1',
-                    paddingLeft: '16px',
-                    margin: 0,
-                    backgroundColor: '#f8fafc',
-                    padding: '12px 16px',
-                    borderRadius: '6px'
-                  }}>
-                    "{location.parentQuote}"
-                  </blockquote>
-                </div>
-                
-                {/* Pro Tip */}
-                {location.insiderTips && (
-                  <div style={{ 
-                    backgroundColor: '#eff6ff', 
-                    padding: '12px', 
-                    borderRadius: '8px',
-                    marginBottom: '16px'
-                  }}>
-                    <strong style={{ color: '#1e40af', fontSize: '0.9rem', fontWeight: '600' }}>💡 Pro Tip:</strong>
-                    <p style={{ color: '#1e40af', margin: '4px 0 0 0', fontSize: '0.9rem' }}>{location.insiderTips}</p>
+                  
+                  {/* Parent Quote */}
+                  <div style={{ marginBottom: '16px' }}>
+                    <h4 style={{ color: '#1f2937', fontSize: '1rem', marginBottom: '8px', fontWeight: '600' }}>
+                      💬 Parents said
+                    </h4>
+                    <div style={{
+                      backgroundColor: '#f3f0ff',
+                      padding: '12px 16px',
+                      borderRadius: '8px',
+                      border: '1px solid #e9d5ff'
+                    }}>
+                      <p style={{ margin: 0, fontStyle: 'italic', color: '#581c87', fontSize: '14px' }}>
+                        "{location.parentQuotes?.[0]}"
+                      </p>
+                    </div>
                   </div>
-                )}
-                
-                {/* Clean Action Buttons at Bottom */}
-                <div style={{ 
-                  paddingTop: '16px',
-                  borderTop: '1px solid #e5e7eb'
-                }}>
+                  
+                  {/* Action Buttons */}
                   <div style={{ 
                     display: 'flex', 
-                    gap: '8px',
-                    justifyContent: 'space-between'
+                    gap: '8px'
                   }}>
-                    <button
-                      onClick={() => toggleFavorite(location.id)}
-                      style={{
-                        padding: '12px 16px',
-                        borderRadius: '8px',
-                        border: 'none',
-                        cursor: 'pointer',
-                        fontSize: '14px',
-                        fontWeight: '600',
-                        backgroundColor: '#ef4444',
-                        color: 'white',
-                        flex: '1',
-                        fontFamily: '"Space Grotesk", sans-serif'
-                      }}
-                    >
-                      💔 Remove
-                    </button>
-                    
                     <button
                       onClick={() => shareActivity(location)}
                       style={{
+                        flex: '1',
                         padding: '12px 16px',
                         borderRadius: '8px',
                         border: 'none',
@@ -468,16 +792,18 @@ function App() {
                         fontWeight: '600',
                         backgroundColor: '#3b82f6',
                         color: 'white',
-                        flex: '1',
-                        fontFamily: '"Space Grotesk", sans-serif'
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
                       }}
                     >
-                      📤 Share
+                      <Share2 size={16} />
                     </button>
                     
                     <button
                       onClick={() => getDirections(location.address)}
                       style={{
+                        flex: '2',
                         padding: '12px 16px',
                         borderRadius: '8px',
                         border: 'none',
@@ -486,11 +812,14 @@ function App() {
                         fontWeight: '600',
                         backgroundColor: '#10b981',
                         color: 'white',
-                        flex: '1',
-                        fontFamily: '"Space Grotesk", sans-serif'
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '8px'
                       }}
                     >
-                      🗺️ Directions
+                      <Navigation size={16} />
+                      Get Directions
                     </button>
                   </div>
                 </div>
@@ -498,10 +827,6 @@ function App() {
             ))}
           </div>
         )}
-
-        <footer style={{ textAlign: 'center', marginTop: '40px', color: '#6b7280', fontFamily: '"Space Grotesk", sans-serif' }}>
-          <p>Built by a parent, for parents ❤️</p>
-        </footer>
       </div>
     );
   }
@@ -510,32 +835,34 @@ function App() {
   if (currentPage === 'about') {
     return (
       <div style={{ padding: '20px', fontFamily: '"Space Grotesk", sans-serif', backgroundColor: '#f9fafb', minHeight: '100vh' }}>
-        <header style={{ textAlign: 'center', marginBottom: '40px' }}>
+        <header style={{ marginBottom: '40px' }}>
           <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-            <div style={{ marginBottom: '20px' }}>
-              <h1 style={{ fontFamily: '"Fredoka One", cursive', color: '#6366f1', fontSize: '3rem', marginBottom: '8px', margin: '0' }}>Tot Trot</h1>
-              <p style={{ fontSize: '1.2rem', color: '#4b5563' }}>About Our Mission</p>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
+              <button
+                onClick={() => setCurrentPage('home')}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  color: '#374151',
+                  marginRight: 'auto'
+                }}
+              >
+                <ChevronLeft size={24} />
+              </button>
+              
+              <div style={{ flex: 1, textAlign: 'center' }}>
+                <h1 style={{ fontFamily: '"Fredoka One", cursive', color: '#6366f1', fontSize: '3rem', margin: '0' }}>Tot Trot</h1>
+                <p style={{ fontSize: '1.2rem', color: '#4b5563', margin: '0' }}>About Our Mission</p>
+              </div>
+              
+              <div style={{ width: '24px' }}></div>
             </div>
-            <button
-              onClick={() => setCurrentPage('home')}
-              style={{
-                padding: '12px 24px',
-                backgroundColor: '#6366f1',
-                color: 'white',
-                border: 'none',
-                borderRadius: '8px',
-                fontSize: '14px',
-                cursor: 'pointer',
-                fontWeight: '600'
-              }}
-            >
-              ← Back to Activities
-            </button>
           </div>
         </header>
 
         <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <div style={{ backgroundColor: '#fff', padding: '40px', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', marginBottom: '30px' }}>
+          <div style={{ backgroundColor: '#fff', padding: '40px', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
             <h2 style={{ color: '#1f2937', fontSize: '2rem', marginBottom: '30px', fontWeight: '700' }}>About Tot Trot</h2>
             
             <div style={{ marginBottom: '30px' }}>
@@ -548,19 +875,6 @@ function App() {
               </p>
             </div>
 
-            <div style={{ marginBottom: '30px' }}>
-              <h3 style={{ color: '#6366f1', fontSize: '1.3rem', marginBottom: '15px', fontWeight: '600' }}>What You Get Right Now</h3>
-              <ul style={{ color: '#4b5563', marginLeft: '20px', lineHeight: '1.6' }}>
-                <li><strong>Real parent intel</strong> – Quotes, tips, and honest reviews from families who've been there</li>
-                <li><strong>Distance-smart results</strong> – Everything sorted by how close it is to you</li>
-                <li><strong>Age-perfect matches</strong> – Filters that actually understand child development (0-8 years)</li>
-                <li><strong>Multi-interest selection</strong> – Mix and match interests to find perfect activities</li>
-                <li><strong>Bookmark & share</strong> – Save favorites and share discoveries with other parents</li>
-                <li><strong>Instant directions</strong> – One tap to Google Maps</li>
-                <li><strong>Community-sourced</strong> – Built from Reddit threads, parent Facebook groups, and local wisdom</li>
-              </ul>
-            </div>
-
             <div style={{ backgroundColor: '#fef3c7', padding: '25px', borderRadius: '8px', marginBottom: '30px' }}>
               <h3 style={{ color: '#92400e', fontSize: '1.3rem', marginBottom: '15px', fontWeight: '600' }}>🚀 The Story Behind Tot Trot</h3>
               <p style={{ color: '#92400e', marginBottom: '15px' }}>
@@ -569,62 +883,10 @@ function App() {
               <p style={{ color: '#92400e', marginBottom: '15px', fontWeight: '600' }}>
                 I wanted to discover the Bay Area WITH my kid, not despite having one.
               </p>
-              <p style={{ color: '#92400e', marginBottom: '15px' }}>
-                Instead of always being the person asking "so... what should we do this weekend?" I wanted to be the one with the perfect hidden gem suggestion.
-              </p>
-              <p style={{ color: '#92400e', marginBottom: '15px' }}>
-                So I did what any curious parent would do – I asked the internet. One simple Reddit post asking Bay Area parents for their favorite kid-friendly spots exploded into 150+ comments and 450+ shares. Parents were hungry to share their secret spots and learn about new ones.
-              </p>
-              <p style={{ color: '#92400e', marginBottom: '15px', fontWeight: '600' }}>
-                That's when I realized: the best family activities aren't found in guidebooks – they're shared between parents.
-              </p>
               <p style={{ color: '#92400e', fontStyle: 'italic' }}>
                 – Anoushka Garg, parent to an unstoppable toddler
               </p>
             </div>
-
-            <div style={{ backgroundColor: '#dbeafe', padding: '25px', borderRadius: '8px', marginBottom: '30px' }}>
-              <h3 style={{ color: '#1e40af', fontSize: '1.3rem', marginBottom: '15px', fontWeight: '600' }}>🌟 The Vision</h3>
-              <p style={{ color: '#1e40af', marginBottom: '15px' }}>
-                Tot Trot isn't just an app – it's a community where Bay Area parents discover, share, and plan adventures together.
-              </p>
-              <p style={{ color: '#1e40af', marginBottom: '15px' }}>
-                Whether you're having an "we need to get out of the house NOW" moment or planning ahead with other parent friends, we want to be your go-to resource.
-              </p>
-              <p style={{ color: '#1e40af', fontWeight: '600' }}>
-                No more decision fatigue. No more backup plan panic. Just great local spots that real families actually love.
-              </p>
-            </div>
-
-            <div style={{ backgroundColor: '#ecfdf5', padding: '25px', borderRadius: '8px' }}>
-              <h3 style={{ color: '#065f46', fontSize: '1.3rem', marginBottom: '15px', fontWeight: '600' }}>📍 This Is Just the Beginning</h3>
-              <p style={{ color: '#065f46', marginBottom: '15px' }}>
-                We're starting with our curated collection of 87 parent-tested locations, but this is only phase one. Your feedback determines what we build next – because the best family app is built BY parents, FOR parents.
-              </p>
-              <p style={{ color: '#065f46', fontWeight: '600' }}>
-                Ready to discover your new favorite spot?
-              </p>
-            </div>
-          </div>
-          
-          <div style={{ backgroundColor: '#fff', padding: '30px', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', textAlign: 'center' }}>
-            <p style={{ color: '#6b7280', marginBottom: '15px', fontSize: '1.1rem' }}>I'd love your feedback on what's working and what's not!</p>
-            <p style={{ color: '#6b7280', marginBottom: '20px', fontSize: '0.9rem' }}>Found a hidden gem I missed? Have ideas for features? Just want to share your thoughts?</p>
-            <a 
-              href="mailto:feedback@tottrot.com" 
-              style={{
-                display: 'inline-block',
-                padding: '12px 24px',
-                backgroundColor: '#6366f1',
-                color: 'white',
-                textDecoration: 'none',
-                borderRadius: '8px',
-                fontSize: '16px',
-                fontWeight: '600'
-              }}
-            >
-              💌 Send Feedback
-            </a>
           </div>
         </div>
       </div>
@@ -673,11 +935,11 @@ function App() {
                 fontWeight: '600',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '6px',
-                fontFamily: '"Space Grotesk", sans-serif'
+                gap: '6px'
               }}
             >
-              ❤️ Saved ({favorites.length})
+              <Bookmark size={16} />
+              Saved ({favorites.length})
             </button>
             <button
               onClick={() => setCurrentPage('about')}
@@ -692,8 +954,7 @@ function App() {
                 fontWeight: '600',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '6px',
-                fontFamily: '"Space Grotesk", sans-serif'
+                gap: '6px'
               }}
             >
               ℹ️ About
@@ -705,53 +966,56 @@ function App() {
       {/* Mad Lib Style Filters */}
       <div style={{ maxWidth: '1000px', margin: '0 auto', marginBottom: '30px', backgroundColor: '#fff', padding: '30px', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
         <div style={{ textAlign: 'center', marginBottom: '25px' }}>
-          <h3 style={{ color: '#374151', fontSize: '1.1rem', margin: '0', marginBottom: '20px', fontWeight: '500' }}>Tell us what you're looking for:</h3>
-          
           <div style={{ fontSize: '1.2rem', color: '#374151', lineHeight: '1.8', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: '8px', marginBottom: '20px' }}>
-            <span>Got</span>
-            <select 
-              value={filters.duration} 
-              onChange={(e) => handleFilterChange('duration', e.target.value)}
-              style={{ padding: '8px 12px', borderRadius: '6px', border: '2px solid #6366f1', fontSize: '16px', fontWeight: '600', color: '#6366f1', backgroundColor: '#f0f4ff', fontFamily: '"Space Grotesk", sans-serif' }}
-            >
-              <option value="All Durations">any amount of time</option>
-              {Object.entries(locationsData.filterOptions.duration).map(([key, label]) => (
-                <option key={key} value={key}>{label.toLowerCase()}</option>
-              ))}
-            </select>
-            
-            <span>and a</span>
+            <span>Looking for</span>
+            <InterestSelector />
+            <span>with a</span>
             <select 
               value={filters.ageRange} 
               onChange={(e) => handleFilterChange('ageRange', e.target.value)}
               style={{ padding: '8px 12px', borderRadius: '6px', border: '2px solid #7c3aed', fontSize: '16px', fontWeight: '600', color: '#7c3aed', backgroundColor: '#f3f0ff', fontFamily: '"Space Grotesk", sans-serif' }}
             >
               <option value="All Ages">kid</option>
-              {Object.entries(locationsData.filterOptions.ageRanges).map(([key, label]) => (
+              {Object.entries(locationsData.filterOptions.ageRanges)
+                .filter(([key]) => getAvailableOptions('ageRange', filters).includes(key))
+                .map(([key, label]) => (
+                <option key={key} value={key}>{label}</option>
+              ))}
+            </select>
+            
+            <span>- got</span>
+            <select 
+              value={filters.duration} 
+              onChange={(e) => handleFilterChange('duration', e.target.value)}
+              style={{ padding: '8px 12px', borderRadius: '6px', border: '2px solid #6366f1', fontSize: '16px', fontWeight: '600', color: '#6366f1', backgroundColor: '#f0f4ff', fontFamily: '"Space Grotesk", sans-serif' }}
+            >
+              <option value="All Durations">any time</option>
+              {Object.entries(locationsData.filterOptions.duration)
+                .filter(([key]) => getAvailableOptions('duration', filters).includes(key))
+                .map(([key, label]) => (
                 <option key={key} value={key}>{label.toLowerCase()}</option>
               ))}
             </select>
             
-            <span>who loves</span>
-            <InterestSelector />
-            
-            <span>near</span>
+            <span>around</span>
             <select 
               value={filters.location} 
               onChange={(e) => handleFilterChange('location', e.target.value)}
               style={{ padding: '8px 12px', borderRadius: '6px', border: '2px solid #dc2626', fontSize: '16px', fontWeight: '600', color: '#dc2626', backgroundColor: '#fef2f2', fontFamily: '"Space Grotesk", sans-serif' }}
             >
               <option value="All Regions">anywhere</option>
-              {Object.keys(locationsData.filterOptions.regions).filter(region => region !== 'All Regions').map(region => (
+              {Object.keys(locationsData.filterOptions.regions)
+                .filter(region => region !== 'All Regions')
+                .filter(region => getAvailableOptions('location', filters).includes(region))
+                .map(region => (
                 <option key={region} value={region}>{region}</option>
               ))}
             </select>
-            
-            <span>?</span>
           </div>
           
-          {/* Show me options button */}
+          {/* Let's go button */}
           <button
+            onClick={() => setShowResults(true)}
             style={{
               padding: '16px 32px',
               backgroundColor: '#000000',
@@ -763,193 +1027,195 @@ function App() {
               fontWeight: '600',
               fontFamily: '"Space Grotesk", sans-serif'
             }}
-            onClick={() => {
-              // This could trigger a search or just highlight the results
-            }}
           >
-            Show me options!
+            Let's go!
           </button>
         </div>
       </div>
 
-      {/* Results Summary */}
-      <div style={{ 
-        maxWidth: '1000px', 
-        margin: '0 auto', 
-        marginBottom: '30px', 
-        textAlign: 'center',
-        padding: '15px',
-        backgroundColor: '#f8fafc',
-        borderRadius: '8px',
-        border: '1px solid #e2e8f0'
-      }}>
-        <p style={{ color: '#374151', margin: '0', fontSize: '1.1rem', fontWeight: '600' }}>
-          🎯 {filteredLocations.length} amazing places found {getSelectedInterestsText()}
-        </p>
-        {userLocation && (
-          <p style={{ color: '#6b7280', fontSize: '14px', margin: '5px 0 0 0' }}>
-            📍 Sorted by distance from your location
-          </p>
-        )}
-      </div>
-
-      {/* Results with Activity Cards */}
-      <div style={{ display: 'grid', gap: '20px', maxWidth: '1000px', margin: '0 auto' }}>
-        {filteredLocations.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '40px' }}>
-            <p style={{ fontSize: '1.5rem', color: '#6b7280' }}>No locations found with current filters</p>
-            <button 
-              onClick={clearAllFilters}
-              style={{ 
-                marginTop: '20px',
-                padding: '12px 24px',
-                backgroundColor: '#6366f1',
-                color: 'white',
-                border: 'none',
-                borderRadius: '8px',
-                fontSize: '16px',
-                cursor: 'pointer',
-                fontWeight: '600',
-                fontFamily: '"Space Grotesk", sans-serif'
-              }}
-            >
-              Show All Activities
-            </button>
+      {/* Results - only show if showResults is true */}
+      {showResults && (
+        <>
+          {/* Results Summary */}
+          <div style={{ 
+            maxWidth: '1000px', 
+            margin: '0 auto', 
+            marginBottom: '30px', 
+            textAlign: 'center',
+            padding: '15px',
+            backgroundColor: '#f8fafc',
+            borderRadius: '8px',
+            border: '1px solid #e2e8f0'
+          }}>
+            <p style={{ color: '#374151', margin: '0', fontSize: '1.1rem', fontWeight: '600' }}>
+              🎯 {filteredLocations.length} amazing places found {getSelectedInterestsText()}
+            </p>
+            {userLocation && (
+              <p style={{ color: '#6b7280', fontSize: '14px', margin: '5px 0 0 0' }}>
+                <MapPin size={14} style={{ display: 'inline', marginRight: '4px' }} />
+                Sorted by distance from your location
+              </p>
+            )}
           </div>
-        ) : (
-          filteredLocations.map((location, index) => (
-            <div key={location.id} style={{ 
-              border: '1px solid #e5e7eb', 
-              borderRadius: '12px', 
-              padding: '24px',
-              backgroundColor: '#fff',
-              boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-              fontFamily: '"Space Grotesk", sans-serif'
-            }}>
-              {/* Header with address at top */}
-              <div style={{ marginBottom: '16px' }}>
-                <h3 style={{ color: '#1f2937', margin: 0, fontSize: '1.5rem', marginBottom: '8px', fontWeight: '600' }}>
-                  {location.name}
-                </h3>
-                <div style={{ fontSize: '14px', color: '#6b7280', marginBottom: '8px', fontWeight: '500' }}>
-                  📍 {location.address}
-                </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', fontSize: '14px', color: '#6b7280', marginBottom: '8px' }}>
-                  <span>🏙️ {location.city}, {location.region}</span>
-                  <span>💰 {location.cost}</span>
-                  <span>⏰ {locationsData.filterOptions.duration[location.duration]}</span>
-                  {userLocation && (
-                    <span style={{ color: '#6b7280', fontWeight: '500' }}>
-                      📍 {getDistanceText(location)}
-                    </span>
-                  )}
-                </div>
+
+          {/* Results with Activity Cards */}
+          <div style={{ display: 'grid', gap: '20px', maxWidth: '1000px', margin: '0 auto' }}>
+            {filteredLocations.length === 0 ? (
+              <div style={{ textAlign: 'center', padding: '40px' }}>
+                <p style={{ fontSize: '1.5rem', color: '#6b7280' }}>No locations found with current filters</p>
+                <button 
+                  onClick={clearAllFilters}
+                  style={{ 
+                    marginTop: '20px',
+                    padding: '12px 24px',
+                    backgroundColor: '#6366f1',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '8px',
+                    fontSize: '16px',
+                    cursor: 'pointer',
+                    fontWeight: '600'
+                  }}
+                >
+                  Show All Activities
+                </button>
               </div>
-              
-              {/* Parent Review */}
-              <div style={{ marginBottom: '16px' }}>
-                <h4 style={{ color: '#1f2937', fontSize: '1.1rem', marginBottom: '8px', fontWeight: '600' }}>
-                  👨‍👩‍👧‍👦 Parent Review
-                </h4>
-                <blockquote style={{ 
-                  fontStyle: 'italic', 
-                  color: '#374151', 
-                  borderLeft: '4px solid #6366f1',
-                  paddingLeft: '16px',
-                  margin: 0,
-                  backgroundColor: '#f8fafc',
-                  padding: '12px 16px',
-                  borderRadius: '6px'
-                }}>
-                  "{location.parentQuote}"
-                </blockquote>
-              </div>
-              
-              {/* Pro Tip */}
-              {location.insiderTips && (
-                <div style={{ 
-                  backgroundColor: '#eff6ff', 
-                  padding: '12px', 
-                  borderRadius: '8px',
-                  marginBottom: '16px'
-                }}>
-                  <strong style={{ color: '#1e40af', fontSize: '0.9rem', fontWeight: '600' }}>💡 Pro Tip:</strong>
-                  <p style={{ color: '#1e40af', margin: '4px 0 0 0', fontSize: '0.9rem' }}>{location.insiderTips}</p>
-                </div>
-              )}
-              
-              {/* Action Buttons */}
-              <div style={{ 
-                paddingTop: '16px',
-                borderTop: '1px solid #e5e7eb'
-              }}>
-                <div style={{ 
-                  display: 'flex', 
-                  gap: '8px',
-                  justifyContent: 'space-between'
-                }}>
+            ) : (
+              filteredLocations.map((location) => (
+                <div key={location.id} style={{ 
+                  border: '1px solid #e5e7eb', 
+                  borderRadius: '12px', 
+                  padding: '24px',
+                  backgroundColor: '#fff',
+                  boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                  position: 'relative',
+                  cursor: 'pointer'
+                }}
+                onClick={() => setSelectedLocation(location)}
+                >
+                  {/* Bookmark in top right */}
                   <button
-                    onClick={() => toggleFavorite(location.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleFavorite(location.id);
+                    }}
                     style={{
-                      padding: '12px 16px',
-                      borderRadius: '8px',
+                      position: 'absolute',
+                      top: '16px',
+                      right: '16px',
+                      background: 'none',
                       border: 'none',
                       cursor: 'pointer',
-                      fontSize: '14px',
-                      fontWeight: '600',
-                      backgroundColor: favorites.includes(location.id) ? '#ef4444' : '#f3f4f6',
-                      color: favorites.includes(location.id) ? 'white' : '#374151',
-                      flex: '1',
-                      fontFamily: '"Space Grotesk", sans-serif'
+                      color: favorites.includes(location.id) ? '#ef4444' : '#9ca3af'
                     }}
                   >
-                    {favorites.includes(location.id) ? '❤️ Saved' : '🤍 Save'}
+                    <Bookmark size={24} fill={favorites.includes(location.id) ? 'currentColor' : 'none'} />
                   </button>
-                  
-                  <button
-                    onClick={() => shareActivity(location)}
-                    style={{
-                      padding: '12px 16px',
-                      borderRadius: '8px',
-                      border: 'none',
-                      cursor: 'pointer',
-                      fontSize: '14px',
-                      fontWeight: '600',
-                      backgroundColor: '#3b82f6',
-                      color: 'white',
-                      flex: '1',
-                      fontFamily: '"Space Grotesk", sans-serif'
-                    }}
-                  >
-                    📤 Share
-                  </button>
-                  
-                  <button
-                    onClick={() => getDirections(location.address)}
-                    style={{
-                      padding: '12px 16px',
-                      borderRadius: '8px',
-                      border: 'none',
-                      cursor: 'pointer',
-                      fontSize: '14px',
-                      fontWeight: '600',
-                      backgroundColor: '#10b981',
-                      color: 'white',
-                      flex: '1',
-                      fontFamily: '"Space Grotesk", sans-serif'
-                    }}
-                  >
-                    🗺️ Directions
-                  </button>
+
+                  {/* Content */}
+                  <div style={{ marginRight: '40px' }}>
+                    <h3 style={{ color: '#1f2937', margin: 0, fontSize: '1.5rem', marginBottom: '8px', fontWeight: '600' }}>
+                      {location.name}
+                    </h3>
+                    
+                    <p style={{ color: '#6b7280', marginBottom: '16px', fontSize: '14px' }}>
+                      {location.description}
+                    </p>
+                    
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', fontSize: '14px', color: '#6b7280', marginBottom: '16px' }}>
+                      <span>{location.city}, {location.region}</span>
+                      <span>💰 {location.cost}</span>
+                      <span>⏰ {locationsData.filterOptions.duration[location.duration]}</span>
+                      {userLocation && (
+                        <span style={{ fontWeight: '500' }}>
+                          <MapPin size={14} style={{ display: 'inline', marginRight: '4px' }} />
+                          {getDistanceText(location)}
+                        </span>
+                      )}
+                    </div>
+                    
+                    {/* Parent Quote */}
+                    <div style={{ marginBottom: '16px' }}>
+                      <h4 style={{ color: '#1f2937', fontSize: '1rem', marginBottom: '8px', fontWeight: '600' }}>
+                        💬 Parents said
+                      </h4>
+                      <div style={{
+                        backgroundColor: '#f3f0ff',
+                        padding: '12px 16px',
+                        borderRadius: '8px',
+                        border: '1px solid #e9d5ff'
+                      }}>
+                        <p style={{ margin: 0, fontStyle: 'italic', color: '#581c87', fontSize: '14px' }}>
+                          "{location.parentQuotes?.[0]}"
+                        </p>
+                      </div>
+                    </div>
+                    
+                    {/* Action Buttons */}
+                    <div style={{ 
+                      paddingTop: '16px',
+                      borderTop: '1px solid #e5e7eb',
+                      display: 'flex', 
+                      gap: '8px'
+                    }}>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          shareActivity(location);
+                        }}
+                        style={{
+                          flex: '1',
+                          padding: '12px 16px',
+                          borderRadius: '8px',
+                          border: 'none',
+                          cursor: 'pointer',
+                          fontSize: '14px',
+                          fontWeight: '600',
+                          backgroundColor: '#3b82f6',
+                          color: 'white',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center'
+                        }}
+                      >
+                        <Share2 size={16} />
+                      </button>
+                      
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          getDirections(location.address);
+                        }}
+                        style={{
+                          flex: '2',
+                          padding: '12px 16px',
+                          borderRadius: '8px',
+                          border: 'none',
+                          cursor: 'pointer',
+                          fontSize: '14px',
+                          fontWeight: '600',
+                          backgroundColor: '#10b981',
+                          color: 'white',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '8px'
+                        }}
+                      >
+                        <Navigation size={16} />
+                        Get Directions
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          ))
-        )}
-      </div>
+              ))
+            )}
+          </div>
+        </>
+      )}
 
       {/* Footer */}
-      <footer style={{ textAlign: 'center', marginTop: '40px', color: '#6b7280', fontFamily: '"Space Grotesk", sans-serif' }}>
+      <footer style={{ textAlign: 'center', marginTop: '40px', color: '#6b7280' }}>
         <p>Built by a parent, for parents ❤️</p>
         <p style={{ fontSize: '12px' }}>87 parent-approved locations and counting</p>
       </footer>
